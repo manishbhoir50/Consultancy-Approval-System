@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.w-80{
+    width : 80%;
+}
+.login-form{
+    width : 45vw;
+    height: 50vh;
+    padding-top : 15vh;
+    background-color : rgb(6, 42, 97);
+    border: 2px solid  rgba(245, 115, 9, 0.87);
+    color : grey;
+    box-shadow: 2px 5px rgba(245, 115, 9, 0.2);;
+}
+.india-blue{
+    background-color : rgb(24, 94, 201);
+}
+.mt-25{
+    margin-top : 25vh;
+}
+.admin-log{
+    border: 2px solid  rgba(245, 115, 9, 0.87);
+    height : 12vh;
+    width : 6vw;
+    position : absolute;
+    top : 19vh;
+    left : 47vw;
+    border-radius : 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color : rgb(2, 21, 49);
+    color : rgba(245, 115, 9, 0.87)  !important;
+}
+.img-fluid{
+    font-size: 60px;
+}
+@media screen and (max-width: 1084px) {
+    .login-form{
+        width : 50vw;
+    }
+    .img-fluid{
+        font-size: 40px;
+    }
+  }
+  @media screen and (max-width: 790px) {
+    .login-form{
+        width : 60vw;
+    }
+    .img-fluid{
+        font-size: 30px;
+    }
+    .admin-log{
+        width : 10vw;
+        left : 45vw;
+     }
+  }
+  @media screen and (max-width: 570px) {
+    .login-form{
+        width : 70vw;
+    }
+    .img-fluid{
+        font-size: 30px;
+    }
+    .admin-log{
+       width : 10vw;
+       left : 45vw;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .login-form{
+        width : 80vw;
+    }
+    .img-fluid{
+        font-size: 30px;
+    }
+    .admin-log{
+       width : 12vw;
+       left : 44vw;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    .login-form{
+        width : 90vw;
+    }
+    .img-fluid{
+        font-size: 30px;
+    }
+    .admin-log{
+       width : 14vw;
+       left : 43vw;
+    }
+  }
+    
