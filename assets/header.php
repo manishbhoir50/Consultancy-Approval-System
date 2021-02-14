@@ -1,3 +1,15 @@
+<?php
+include("../assets/php_modules/connection.php");
+include("../assets/php_modules/common_methods.php");
+
+session_start();
+
+if(isset($_POST['log-out'])){
+   log_out();
+}
+?>
+
+
 <header class = "position-sticky">
 
 
@@ -29,7 +41,7 @@
                           <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                              <!-- menu on right side -->
-                             <form class="d-flex form-width justify-content-between flex-wrap-reverse mt-2">
+                             <form class="d-flex form-width justify-content-between flex-wrap-reverse mt-2" method = "POST">
 
                                 <!-- buttons on right side -->
                                 <div class="form-btn-container mt-2">
@@ -37,7 +49,7 @@
                                     <a class="btn btn-light mr-2 hide-me" href="#">Apply</a>
 
                                     <!-- log out button -->
-                                    <button class="btn btn-light" href="#">log out</button>
+                                    <button class="btn btn-light" href="#" type = "submit" name = "log-out">log out</button>
                                 </div>
 
                                 <!-- profile -->
@@ -45,7 +57,7 @@
                                     <div class="profile d-flex justify-content-center align-items-end">
                                         <i class="fas fa-user"></i>
                                     </div>
-                                    <span>18CE1009</span>
+                                    <span><?php echo $_SESSION['sdrn'] ?></span>
                                 </div>
                             </form>
                           </div>

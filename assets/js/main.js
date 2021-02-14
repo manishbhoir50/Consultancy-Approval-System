@@ -1,27 +1,28 @@
+// method to createHeader
 let createHeader = () => {
     console.log("js file ")
     $(() => {
-        $('#header').load('../assets/header.html')
+        $('#header').load('../assets/header.php')
     })
 }
 
-let load_document = (btn) => {
-    let loader = document.getElementsByClassName('loader')
-    let all = loader[0]
-    let pending = loader[1]
-    let approved = loader[2]
-    let completed = loader[3]
-    let rejected = loader[4]
+//method to clear previous internship details and make clicked button active
+let clear_table = (btn)=>{
+    let table = document.getElementById('table');
+    table.innerHTML = "";
 
+    // loader is array of referenace btns - all pending approved completed rejected
+    let loader = document.getElementsByClassName('loader')
+    
+    // to make all btn non active
     for (let i = 0; i < loader.length; i++)
         loader[i].className = "btn loader";
-    let status = btn.id;
-    $(document).ready(() => {
-        $('#table').load('./data.html')
-    })
+
+    // to make clicked btn active
     btn.className = "btn loader btn-active";
 }
 
+// method to validate apply form if there is error it will show error alert and red colored border on input field
 let validate_me = ()=>{
     let input_required = document.getElementsByClassName('input-required')
     let error_msg = document.getElementById('error-msg')
@@ -42,6 +43,8 @@ let validate_me = ()=>{
     return status
 }
 
+
+// method to remove red border on input field on changing it also to remove error alert
 let remove_error = (element)=>{
     let error_msg = document.getElementById('error-msg')
     error_msg.style.display = "none";

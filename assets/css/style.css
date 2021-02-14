@@ -4,28 +4,32 @@
     box-sizing: border-box !important;
 }
 
+
+/* color theme varaible are initialsed */
 :root {
     /* --primary: rgb(131, 5, 5);
     --secondary: rgb(240, 15, 15); */
-    --primary: rgba(139,0,21,255);
+    --primary: rgba(139, 0, 21, 255);
     --secondary: rgb(240, 15, 15);
     /* --primary : rgb(15, 0, 32);
     --secondary : rgb(9, 61, 110); */
 }
 
-.alert-danger{
-   background-color: red;
-   color : white;
+/* this will remove horizontal side bar */
+body {
+    overflow-x: hidden !important;
 }
 
-.label-required::after{
+/* this will put red start after required fields on form */
+.label-required::after {
     content: " *";
-    color : rgb(240, 15, 15);
-    font-size : 18px;
+    color: rgb(240, 15, 15);
+    font-size: 18px;
 }
 
-.validation-msg{
-    display : none;
+/* this will hide that message which comes if you have not filled all required fields */
+.validation-msg {
+    display: none;
 }
 
 .btn-light {
@@ -37,10 +41,14 @@
 .navbar-light {
     color: white !important;
 }
-.form-radius{
-    border-radius : 40px;
+
+
+.form-radius {
+    border-radius: 40px;
 }
 
+
+/* class to hide apply button in pages */
 .hide-me {
     visibility: hidden;
 }
@@ -59,6 +67,8 @@
     color: rgb(218, 130, 16);
 }
 
+
+/* css of user icon */
 .profile {
     background-color: white;
     border-radius: 50%;
@@ -108,14 +118,18 @@
     border: 2px solid black;
     text-decoration: underline;
 }
-header{
-    position : sticky;
-    top : -86px;
+
+/* css to make navbar sticky */
+header {
+    position: sticky;
+    top: -86px;
     z-index: 5;
 }
-.college-header{
-    z-index : 6;
+
+.college-header {
+    z-index: 6;
 }
+
 .btn-container .btn:active {
     border: 2px solid black;
     background-color: var(--secondary) !important;
@@ -123,8 +137,8 @@ header{
 
 .college-name {
     flex: 1;
-    position : absolute;
-    width : 100vw;
+    position: absolute;
+    width: 100vw;
 }
 
 .add-font {
@@ -137,9 +151,10 @@ header{
     width: 170px;
 }
 
-.heart-beat-animation{
-    animation : beat 1.5s infinite;
+.heart-beat-animation {
+    animation: beat 1.5s infinite;
 }
+
 .container {
     margin: auto;
     background-color: whitesmoke;
@@ -185,22 +200,27 @@ form {
     color: white;
 }
 
-@keyframes beat{
-    0%{ transition:  scale(1, 1)}
-    100%{ transform : scale(1.5, 1.5)}
-  }
+@keyframes beat {
+    0% {
+        transition: scale(1, 1)
+    }
+
+    100% {
+        transform: scale(1.5, 1.5)
+    }
+}
 
 @media only screen and (min-width: 576px) {
-   
+
     .navbar {
         height: 60px !important;
     }
 }
 
-@media only screen and (max-width: 850px){
-   .college-name{
-       position: static;
-   }
+@media only screen and (max-width: 850px) {
+    .college-name {
+        position: static;
+    }
 }
 
 @media only screen and (max-width: 770px) {
@@ -215,17 +235,24 @@ form {
     #navbarSupportedContent {
         width: 100%;
     }
-    
-    @keyframes beat{
-        0%{ transition:  scale(1, 1)}
-        100%{ transform : scale(1.3, 1.3)}
-      }
+
+    @keyframes beat {
+        0% {
+            transition: scale(1, 1)
+        }
+
+        100% {
+            transform: scale(1.3, 1.3)
+        }
+    }
+
     .college-logo img {
         height: 66px;
         width: 120px;
     }
-    header{
-        top : -66px;
+
+    header {
+        top: -66px;
     }
 
     .hide-me {
@@ -259,7 +286,8 @@ form {
     .form-btn-container .btn {
         margin-right: 10px;
     }
-    .college-name{
+
+    .college-name {
         display: none;
     }
 }
