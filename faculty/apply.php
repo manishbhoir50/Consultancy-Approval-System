@@ -33,7 +33,10 @@
 
 
   <header id="header">
-    <?php include('../assets/header.php') ?>
+    <?php 
+       include("../assets/php_modules/common_methods.php");
+       load_header();
+    ?>
   </header>
 
   <h1 class="text-center mt-5 mb-3" class="add-font">Apply here</h1>
