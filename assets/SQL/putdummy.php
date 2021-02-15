@@ -33,12 +33,12 @@ $topic = array("RAIT authentication system", "MU RRC system", "Internship Approv
 $consultancy_type = array("I", "O", "I");
 $adress = array("abc", "abc", "abc");
 $tentative_amount = array(1000, 5000, 2000);
-$abstract = array("abc", "abc", "abc");
+$abstract = array("../files/18CE1009/sample.pdf", "../files/18CE1009/sample.pdf", "../files/18CE1009/sample.pdf");
 $member_count = array(7, 10, 8);
 $from_date = array("2001-01-01", "2001-01-01", "2001-01-01");
 $to_date =  array("2001-01-01", "2001-01-01", "2001-01-01");
 $skills = array("no required", "no required", "no required");
-$date_submission = array("1/1/2001", "1/1/2001/", "1/1/2001/");
+$date_submission = array("2001-01-01", "2001-01-01", "2001-01-01");
 $status = array("approved", "approved", "pending");
 
 for($i = 0 ; $i < 3 ; $i++){
