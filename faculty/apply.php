@@ -33,9 +33,34 @@
 
 
   <header id="header">
-    <?php 
-       include("../assets/php_modules/common_methods.php");
-       load_header();
+    <?php
+    include("../assets/php_modules/connection.php");
+    include("../assets/php_modules/common_methods.php");
+
+    load_header();
+    $faculty = display_details();
+    $date = display_date();
+
+    if (isset($_POST['submit'])) {
+      $sdrn = $faculty['Sdrn'];
+      $path = upload_file($sdrn);
+
+      $topic = $_POST['topic'];
+      $consultancy = $_POST['consultancy'];
+      $company_name = $_POST['company_name'];
+      $amount = $_POST['amount'];
+      $count = $_POST['count'];
+      $startdate = $_POST['startdate'];
+      $enddate = $_POST['enddate'];
+      $skill = $_POST['skill'];
+      $submission_date = $date;
+
+
+      $formid = upload_details($sdrn, $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
+      viewform($formid);
+      
+    }
+    
     ?>
   </header>
 
@@ -45,47 +70,52 @@
   <h3 class="text-center mb-3 add-font validation-msg alert alert-danger add-font" id="error-msg">Please fill all the required fields*</h3>
 
   <div class="container form-radius">
-    <form onsubmit="return validate_me()">
+    <form onsubmit="return validate_me()" method="post" enctype="multipart/form-data">
       <div class="mt-3 mb-3">
         <label for="faculty_sdrn" class="form-label">Faculty SDRN </label>
-        <input type="text" class="form-control" id="faculty_sdrn" placeholder="Enter your SDRN">
+        <input type="text" class="form-control" id="faculty_sdrn" name="sdrn" placeholder="Enter your SDRN" value="<?php echo $faculty['Sdrn'] ?>" disabled>
       </div>
 
       <label for="name" class="form-label">Faculty Name</label>
       <div class="row  mb-3">
         <div class="col-lg-4 col-md-4 col-xl-4 col-sm-12 mb-3">
-          <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+          <input type="text" class="form-control" placeholder="First name" aria-label="First name" value="<?php echo $faculty['First_name'] ?>" disabled>
         </div>
         <div class="col-lg-4 col-md-4 col-xl-4 col-sm-12 mb-3">
-          <input type="text" class="form-control" placeholder="Middle name" aria-label="Middle name">
+          <input type="text" class="form-control" placeholder="Middle name" aria-label="Middle name" value="<?php echo $faculty['Middle_name'] ?>" disabled>
         </div>
         <div class="col-lg-4 col-md-4 col-xl-4 col-sm-12">
-          <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+          <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" value="<?php echo $faculty['Last_name'] ?>" disabled>
         </div>
       </div>
 
       <div class="mb-3">
         <label for="designation" class="form-label label-required"> Designation </label>
-        <input type="text" class="form-control input-required" id="designation" placeholder="Enter your SDRN" onchange="remove_error(this)">
+        <input type="text" class="form-control input-required" id="designation" placeholder="Enter your Designation" onchange="remove_error(this)" value="<?php echo $faculty['Desig'] ?>" disabled>
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="inputAddress" class="form-label label-required">Location/Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address" value="<?php echo $faculty['Addr'] ?>" disabled>
       </div>
 
       <!-- topic - this is extra field added -->
       <div class="mb-3">
         <label for="topic" class="form-label label-required"> Topic </label>
-        <input type="text" class="form-control input-required" id="topic" placeholder="Enter your topic" onchange="remove_error(this)">
+        <input type="text" class="form-control input-required" id="topic" name="topic" placeholder="Enter your topic" onchange="remove_error(this)" value="<?php if (isset($topic)) echo $topic ?>">
       </div>
 
       <fieldset class="row mb-3 no-gutters">
         <legend class="col-form-label col-sm-3 pt-0 label-required">Type of Consultancy</legend>
         <div class="col-sm-8 d-flex justify-content-start">
           <div class="form-check mr-3" style="margin-right: 20px !important;">
-            <input class="form-check-input" type="radio" name="radio" id="inhouse" value="I" checked>
+            <input class="form-check-input" type="radio" name="consultancy" id="inhouse" value="I" checked>
             <label class="form-check-label" for="inhouse">
               INHOUSE
             </label>
           </div>
           <div class="form-check ml-3">
-            <input class="form-check-input" type="radio" name="radio" id="outhouse" value="O">
+            <input class="form-check-input" type="radio" name="consultancy" id="outhouse" value="O">
             <label class="form-check-label" for="outhouse">
               OUTHOUSE
             </label>
@@ -94,24 +124,19 @@
       </fieldset>
 
       <div class="mb-3 no-gutters">
-        <label for="company_name" class="form-label no-gutters"> Comapany Name </label>
-        <input type="text" class="form-control" id="company_name" placeholder="Enter Company Name">
-      </div>
-
-      <div class="col-12 mb-3">
-        <label for="inputAddress" class="form-label label-required">Location/Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address">
+        <label for="company_name" class="form-label no-gutters"> Company Name </label>
+        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter Company Name" value="<?php if (isset($company_name)) echo $company_name ?>">
       </div>
 
       <label for="amount" class="form-label label-required">Tentative Amount</label>
       <div class="input-group mb-3">
         <span class="input-group-text"><i class="fas fa-rupee-sign"></i></span>
-        <input type="number" class="form-control input-required" id="amount" placeholder="Enter Amount" onchange="remove_error(this)">
+        <input type="number" class="form-control input-required" id="amount" name="amount" placeholder="Enter Amount" onchange="remove_error(this)">
       </div>
 
       <div class="mb-3">
         <label for="formFile" class="form-label label-required">Abstract: Uploading Word File Option</label>
-        <input class="form-control input-required" type="file" id="formFile" name="upload" accept="application/pdf,application/vnd.ms-excel" onchange="remove_error(this)" />
+        <input class="form-control input-required" type="file" id="formFile" name="file" accept="application/pdf,application/vnd.ms-excel" onchange="remove_error(this)" />
         <small class="text-muted">Note: Only Pdf file is allowed </small>
       </div>
 
@@ -120,7 +145,7 @@
           Count of Team Members / Programmers -
         </label>
         <div class="col-sm-5">
-          <input type="number" class="form-control" id="count">
+          <input type="number" class="form-control" id="count" name="count">
         </div>
       </div>
 
@@ -132,19 +157,20 @@
 
       <div class="mb-3">
         <label for="skillset" class="form-label label-required"> Skill Set/ Technology Required </label>
-        <input type="text" class="form-control input-required" id="skillset" placeholder="Enter Skills Required" onchange="remove_error(this)">
+        <input type="text" class="form-control input-required" id="skillset" placeholder="Enter Skills Required" name="skill" onchange="remove_error(this)">
       </div>
+
 
       <div class="row mb-3 no-gutters">
         <label for="submissiondate" class="form-label label-required">Date of Submission for Approval</label>
         <div class="col-sm-7">
-          <input type="date" class="form-control input-required" id="submissiondate" style="text-align: center;" onchange="remove_error(this)">
+          <input type="text" class="form-control input-required" id="submissiondate" style="text-align: center;" name="submission_date" onchange="remove_error(this)" value="<?php echo $date ?>" disabled>
         </div>
       </div>
 
       <!-- submit button -->
       <div class=" d-flex justify-content-center mt-4 btn-container">
-        <button type="submit" class="btn text-decoration-none">Submit</button>
+        <button type="submit" name="submit" class="btn text-decoration-none">Submit</button>
       </div>
     </form>
   </div>
