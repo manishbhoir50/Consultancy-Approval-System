@@ -1,13 +1,13 @@
 <?php
+session_start();
 include("../assets/php_modules/connection.php");
 include("../assets/php_modules/common_methods.php");
-
-session_start();
 
 if (isset($_POST['log-out'])) {
     log_out();
 }
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -124,7 +124,7 @@ if (isset($_POST['log-out'])) {
 
         <!-- flexbox containing buttons all pending approved completed rejected -->
         <form method="POST" class="btn-container d-flex justify-content-center w-100 flex-wrap">
-            <button href="index.html" class="btn btn-active loader" id="all" type="submit" name="all">all</button>
+            <button href="index.html" class="btn  loader" id="all" type="submit" name="all">all</button>
             <button href="pending.html" class="btn loader" id="pending" type="submit" name="pending">pending</button>
             <button href="approved.html" class="btn loader" id="approved" type="submit" name="approved">approved</button>
             <button href="completed.html" class="btn loader" id="completed" type="submit" name="completed">completed</button>
@@ -134,47 +134,82 @@ if (isset($_POST['log-out'])) {
         <!-- table  -->
 
         <div class="table-container mx-auto mt-5" id="table">
-
-            <!-- php code to get details according to button clicked and call to js method to make clicked button active -->
             <?php
-
             if (isset($_POST['pending'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('pending'));
                 </script>
             <?php
-                load_details('pending', 'faculty', $_SESSION['sdrn'], '');
+                $result = load_details('pending', 'faculty', $_SESSION['sdrn'], '');
             } else if (isset($_POST['approved'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('approved'));
                 </script>
             <?php
-                load_details('approved', 'faculty', $_SESSION['sdrn'], '');
+                $result = load_details('approved', 'faculty', $_SESSION['sdrn'], '');
             } else if (isset($_POST['completed'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('completed'));
                 </script>
             <?php
-                load_details('completed', 'faculty', $_SESSION['sdrn'], '');
+                $result = load_details('completed', 'faculty', $_SESSION['sdrn'], '');
             } else if (isset($_POST['rejected'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('rejected'));
                 </script>
             <?php
-                load_details('rejected', 'faculty', $_SESSION['sdrn'], '');
+                $result = load_details('rejected', 'faculty', $_SESSION['sdrn'], '');
             } else {
             ?>
                 <script>
                     clear_table(document.getElementById('all'));
                 </script>
             <?php
-                load_details('all', 'faculty', $_SESSION['sdrn'], '');
+                $result = load_details('all', 'faculty', $_SESSION['sdrn'], '');
+            }
+            // if no internship found then message will be displayed otherwise details whatever we found will be displayed
+            if (mysqli_num_rows($result) == 0) {
+            ?>
+                <h1 class="text-center" class="add-font">Oops no internship found!!</h1>
+            <?php
+            } else {
+            ?>
+
+                <table class="table table-striped">
+                    <thead class="table-header">
+                        <tr>
+                            <th>INTERNSHIP ID</th>
+                            <th>TOPIC</th>
+                            <th>STATUS</th>
+                            <th>DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($data = mysqli_fetch_assoc($result)) {
+                        ?>
+                            <tr>
+                                <td><?php echo $data['internship_id'] ?></td>
+
+                                <!-- after clicking on topic we will redirect to view_form.php and we will send sdrn and internship_id through get method -->
+                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
+
+                                <td><?php echo $data['status'] ?></td>
+                                <td><?php echo $data['Date_submission'] ?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php
             }
             ?>
+
         </div>
     </main>
 

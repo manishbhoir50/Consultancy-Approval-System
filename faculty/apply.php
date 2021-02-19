@@ -36,8 +36,7 @@
     <?php
     include("../assets/php_modules/connection.php");
     include("../assets/php_modules/common_methods.php");
-
-    load_header();
+    include("../assets/php_modules/header.php");
     $faculty = display_details();
     $date = display_date();
 
@@ -56,8 +55,7 @@
       $submission_date = $date;
 
 
-      $formid = upload_details($sdrn, $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
-      viewform($formid);
+      upload_details($sdrn, $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
       
     }
     
@@ -90,12 +88,12 @@
       </div>
 
       <div class="mb-3">
-        <label for="designation" class="form-label label-required"> Designation </label>
+        <label for="designation" class="form-label"> Designation </label>
         <input type="text" class="form-control input-required" id="designation" placeholder="Enter your Designation" onchange="remove_error(this)" value="<?php echo $faculty['Desig'] ?>" disabled>
       </div>
 
       <div class="col-12 mb-3">
-        <label for="inputAddress" class="form-label label-required">Location/Address</label>
+        <label for="inputAddress" class="form-label">Location/Address</label>
         <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address" value="<?php echo $faculty['Addr'] ?>" disabled>
       </div>
 
