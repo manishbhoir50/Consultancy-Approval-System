@@ -81,7 +81,6 @@ CREATE TABLE `internships` (
   `Topic` varchar(100) NOT NULL,
   `Consultancy_Type` char(1) NOT NULL,
   `Company_Name` varchar(255),
-  `Address` varchar(255) ,
   `Tentative_Amount` float NOT NULL,
   `Abstract` varchar(255) NOT NULL,
   `Members_Count` int(11) NOT NULL,

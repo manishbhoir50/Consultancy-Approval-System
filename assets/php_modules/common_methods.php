@@ -29,13 +29,21 @@ function load_details($required, $role, $sdrn, $dept)
     // query for faculty module
     if ($role == "faculty") {
         if ($required == "all")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn'";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' ORDER BY `Date_submission` DESC";
         else
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `status` = '$required'";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `status` = '$required' ORDER BY `Date_submission` DESC";
+    }else if ($role == "hod") {
+        if ($required == "all")
+        $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE Sdrn IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') ORDER BY `Date_submission` DESC";
+        else if($required == "pending")
+        $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE Sdrn IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `HOD_Approval` = 0  ORDER BY `Date_submission` DESC";
+        else if($required == "approved")
+        $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE Sdrn IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `HOD_Approval` = 1  ORDER BY `Date_submission` DESC";
+        else if($required == "rejected")
+        $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE Sdrn IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `HOD_Approval` = -1  ORDER BY `Date_submission` DESC";
+        else
+        $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE Sdrn IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `status` = 'completed'  ORDER BY `Date_submission` DESC";
     }
-
-
-    // use else if and write query for your module rest all part will be same
 
     // this part is going to be same for all module
     $result = mysqli_query($conn, $query);
@@ -89,7 +97,7 @@ function upload_details($sdrn, $topic, $consultancy, $company_name, $amount, $pa
 {
     global $conn;
 
-    $query = "INSERT INTO `internships` (`Sdrn`, `Topic`, `Consultancy_Type`,`Company_Name`, `Address`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_Submission`, `status`) VALUES ('$sdrn','$topic','$consultancy','$company_name','abc','$amount','$path','$count','$startdate','$enddate','$skill','$submission_date','pending') ";
+    $query = "INSERT INTO `internships` (`Sdrn`, `Topic`, `Consultancy_Type`,`Company_Name`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_Submission`, `status`) VALUES ('$sdrn','$topic','$consultancy','$company_name','$amount','$path','$count','$startdate','$enddate','$skill','$submission_date','pending') ";
 
     mysqli_query($conn, $query);
 

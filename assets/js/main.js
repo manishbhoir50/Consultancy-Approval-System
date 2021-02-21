@@ -34,8 +34,11 @@ let validate_me = ()=>{
         }
     }
     if(status){
-        if(confirm("Once you submitted you can't edit form/ndo you want to submit form?"))
+        if(confirm("Once you submitted you can't edit form\ndo you want to submit form?"))
         alert("Your form is submmited")
+        else{
+        status = false;
+        }
     }else{
        error_msg.style.display = "block"
        alert("Please fill all required fileds before submit")
