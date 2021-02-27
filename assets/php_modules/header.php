@@ -9,7 +9,7 @@
     <!-- college logo and name -->
     <div class="collge-header d-flex align-items-center">
         <div class="college-logo">
-            <img src="../assets/images/logo.jpg" alt="dy patil logo" id="college-logo">
+            <img src="../assets/images/logo.jpeg" alt="dy patil logo" id="college-logo">
         </div>
         <div class="college-name add-font">
             <h1 class="text-center" id="college-name">Ramrao adik institute of technology</h1>
@@ -46,11 +46,11 @@
                                     </div>
 
                                     <!-- profile -->
-                                    <div class="d-flex align-items-center justify-content-between profile-container">
-                                        <div class="profile d-flex justify-content-center align-items-end">
+                                    <div class="d-flex align-items-center justify-content-center profile-container">
+                                        <div class="profile d-flex justify-content-center align-items-end" style = "margin-right : 5px">
                                             <i class="fas fa-user"></i>
                                         </div>
-                                        <span><?php echo $_SESSION['sdrn'] ?></span>
+                                        <span><?php echo $_SESSION['first_name'] ?></span>
                                     </div>
                                 </form>
                             </div>

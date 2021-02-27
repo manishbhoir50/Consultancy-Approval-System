@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("../assets/php_modules/connection.php");
-include("../assets/php_modules/common_methods.php");
+include_once("../assets/php_modules/connection.php");
+include_once("../assets/php_modules/common_methods.php");
 
 if (isset($_POST['log-out'])) {
     log_out();
@@ -45,7 +45,7 @@ if (isset($_POST['log-out'])) {
         <!-- college logo and name -->
         <div class="collge-header d-flex align-items-center">
             <div class="college-logo">
-                <img src="../assets/images/logo.jpg" alt="dy patil logo" id="college-logo">
+                <img src="../assets/images/logo.jpeg" alt="dy patil logo" id="college-logo">
             </div>
             <div class="college-name add-font">
                 <h1 class="text-center" id="college-name">Ramrao adik institute of technology</h1>
@@ -82,11 +82,11 @@ if (isset($_POST['log-out'])) {
                                         </div>
 
                                         <!-- profile -->
-                                        <div class="d-flex align-items-center justify-content-between profile-container">
-                                            <div class="profile d-flex justify-content-center align-items-end">
+                                        <div class="d-flex align-items-center justify-content-center profile-container">
+                                            <div class="profile d-flex justify-content-center align-items-end" style = "margin-right : 5px !important">
                                                 <i class="fas fa-user"></i>
                                             </div>
-                                            <span><?php echo $_SESSION['sdrn'] ?></span>
+                                            <span><?php echo $_SESSION['first_name'] ?></span>
                                         </div>
                                     </form>
                                 </div>
@@ -196,7 +196,10 @@ if (isset($_POST['log-out'])) {
                                 <td><?php echo $data['internship_id'] ?></td>
 
                                 <!-- after clicking on topic we will redirect to view_form.php and we will send sdrn and internship_id through get method -->
-                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
+                                <?php
+                                $status = str_replace(' ', '', $data['status']);
+                                ?>
+                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>&status=<?php echo $status ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
 
                                 <td><?php echo $data['status'] ?></td>
                                 <td><?php echo $data['Date_submission'] ?></td>

@@ -91,9 +91,10 @@ if (isset($_POST['submit'])) {
       $sdrn = $data["Sdrn"];
       $dept = $data['Department'];
       $_SESSION['dept'] = $dept;
+      $_SESSION['first_name'] = $data['First_name'];
       $_SESSION['sdrn'] = $sdrn;
       $_SESSION['email_id'] = $email_id;
-      header("location: ./home.php");
+      header("location: ./home.php?dept=$dept");
     }
   }
 }

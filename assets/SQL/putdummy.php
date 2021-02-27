@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $database_name = "internship_approval";
 $conn = mysqli_connect($host, $username, $password, $database_name);
-$sdrn = array("18CE1009", "18CE1007", "18CE1008", "18CE1004");
+$sdrn = array(400, 401, 402, 403);
 $first_name = array("shivam", "chetan", "aditya", "shubham");
 $middle_name = array("balaji", "abc", "xyz", "pqr");
 $last_name = array("kendre", "khairnar", "desai", "patil");
@@ -12,7 +12,7 @@ $dob =  array("2001-01-01", "2001-01-01", "2001-01-01", "2000-01-01");
 $dept = array("computer", "computer", "computer", "electronics");
 $contact = array(1234, 1234, 1234, 1234);
 $addr = array("abc", "abc", "abc", "abc");
-$email = array("shivamkendre78@gmail.com", "chetankhairnar28@gmail.com", "adityadesai56@gmail.com", "shubhampatil65@gmail.com");
+$email = array("shivamkendre78@gmail.com", "chetankhairnar28@gmail.com", "computerhodrait@gmail.com", "shubhampatil65@gmail.com");
 $doj = array("1/1/2001", "1/1/2001", "1/1/2001");
 $qualification = array("computer engineer", "computer engineer", "computer engineer", "phd");
 $desig = array("front-end", "back-end", "database", "scientist");
@@ -54,11 +54,11 @@ for($i = 0 ; $i < 4 ; $i++){
 
 $username = array('shubham', 'aditya');
 $password = array('1234', '1234');
-$email_id = array('shubhampatil65@gmail.com', 'adityadesai56@gmail.com');
+$email_id = array('shubhampatil65@gmail.com', 'computerhodrait@gmail.com');
 $phone_no = array(1234, 1234);
 $OTP = array('123', '123');
 for($i = 0 ; $i < 2; $i++){
-    $query = "INSERT INTO `admin_details`  VALUES ('$username[$i]', '$password[$i]', '$email_id[$i]', '$phone_no[$i]', '$OTP[$i]')";
+    $query = "INSERT INTO `admin_details`  VALUES ('$username[$i]', '$password[$i]', '$email_id[$i]', '$phone_no[$i]', '$OTP[$i]', 'hod')";
     // echo $query;
      $result = mysqli_query($conn, $query);
      if($result)

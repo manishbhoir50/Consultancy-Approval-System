@@ -1,10 +1,6 @@
 <?php
 include("../assets/php_modules/connection.php");
 include("../assets/php_modules/common_methods.php");
-
-if (isset($_POST['log-out'])) {
-    log_out();
-}
 ?>
 
 <!doctype html>
@@ -45,7 +41,6 @@ if (isset($_POST['log-out'])) {
         <?php include('../assets/php_modules/header.php') ?>
 
     </header>
-
     <!-- success message after login cookie is used to keep track that  user have log in recently but not refreshed page -->
     <?php
     if ($_SESSION['log_in']) {
@@ -83,41 +78,42 @@ if (isset($_POST['log-out'])) {
 
         <div class="table-container mx-auto mt-5" id="table">
             <?php
+            $dept = $_SESSION["dept"];
             if (isset($_POST['pending'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('pending'));
                 </script>
             <?php
-                $result = load_details('pending', 'hod', $_SESSION['sdrn'], $_SESSION['dept']);
+                $result = load_details('pending', 'hod', $_SESSION['sdrn'], $dept);
             } else if (isset($_POST['approved'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('approved'));
                 </script>
             <?php
-                $result = load_details('approved', 'hod', $_SESSION['sdrn'], $_SESSION['dept']);
+                $result = load_details('approved', 'hod', $_SESSION['sdrn'], $dept);
             } else if (isset($_POST['completed'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('completed'));
                 </script>
             <?php
-                $result = load_details('completed', 'hod', $_SESSION['sdrn'], $_SESSION['dept']);
+                $result = load_details('completed', 'hod', $_SESSION['sdrn'], $dept);
             } else if (isset($_POST['rejected'])) {
             ?>
                 <script>
                     clear_table(document.getElementById('rejected'));
                 </script>
             <?php
-                $result = load_details('rejected', 'hod', $_SESSION['sdrn'], $_SESSION['dept']);
+                $result = load_details('rejected', 'hod', $_SESSION['sdrn'], $dept);
             } else {
             ?>
                 <script>
                     clear_table(document.getElementById('all'));
                 </script>
             <?php
-                $result = load_details('all', 'hod', $_SESSION['sdrn'], $_SESSION['dept']);
+                $result = load_details('all', 'hod', $_SESSION['sdrn'], $dept);
             }
             // if no internship found then message will be displayed otherwise details whatever we found will be displayed
             if (mysqli_num_rows($result) == 0) {
@@ -144,7 +140,10 @@ if (isset($_POST['log-out'])) {
                                 <td><?php echo $data['internship_id'] ?></td>
 
                                 <!-- after clicking on topic we will redirect to view_form.php and we will send sdrn and internship_id through get method -->
-                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
+                                <?php
+                                $status = str_replace(' ', '', $data['status']);
+                                ?>
+                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>&status=<?php echo $status ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
 
                                 <td><?php echo $data['status'] ?></td>
                                 <td><?php echo $data['Date_submission'] ?></td>

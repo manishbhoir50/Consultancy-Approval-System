@@ -83,10 +83,13 @@ if (isset($_POST['submit'])) {
       </script>
 <?php
     } else {
-      $sdrn = mysqli_fetch_assoc($result)["Sdrn"];
+      $data = mysqli_fetch_assoc($result);
+      $sdrn = $data["Sdrn"];
+      $_SESSION["first_name"] = $data["First_name"];
       $_SESSION['email_id'] = $email_id;
       $_SESSION['sdrn'] = $sdrn;
-      header("location: ./home.php");
+      $dept =  $_SESSION['dept'] = $data["Department"];
+      header("location: ./home.php?dept=$dept");
     }
   }
 }

@@ -71,6 +71,7 @@ body {
 /* css of user icon */
 .profile {
     background-color: white;
+    margin-right: 10px;
     border-radius: 50%;
     width: 35px;
     height: 38px;

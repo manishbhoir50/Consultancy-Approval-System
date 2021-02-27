@@ -1,13 +1,14 @@
 <?php
-    include("../assets/php_modules/common_methods.php");
-    include("../assets/php_modules/form_details.php");
+include("../assets/php_modules/common_methods.php");
+include("../assets/php_modules/form_details.php");
 
-    
-    // internship_id and sdrn are through href you can see them in url 
-    $internship_id = $_GET['internship_id'];
-    $form = get_form_details($internship_id);
-    $sdrn = $form['Sdrn'];
-    $faculty = get_faculty_details($sdrn);
+
+// internship_id and sdrn are through href you can see them in url 
+$internship_id = $_GET['internship_id'];
+$form = get_form_details($internship_id);
+$sdrn = $form['Sdrn'];
+$status = $_GET['status'];
+$faculty = get_faculty_details($sdrn);
 ?>
 <!doctype html>
 <html lang="en">
@@ -175,25 +176,37 @@
                 </div>
             </div>
 
+            <?php
+
+            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydin') {
+            ?>
+                <div class="row mb-3 no-gutters">
+                    <label for="submissiondate" class="form-label">Rejection reason</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control input-required" id="inputAdress" style="text-align: center;" value="<?php echo $form['Rejection_Reason'] ?>" disabled>
+                    </div>
+                </div>
         </form>
     </div>
+           <?php
+            }
+           ?>
+</form>
+</div>
+<!-- Go back to home page -->
+<div class=" d-flex justify-content-center mt-4 btn-container">
+    <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
+</div>
 
 
-    <!-- Go back to home page -->
-    <div class=" d-flex justify-content-center mt-4 btn-container">
-        <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
-    </div>
+<!-- Optional JavaScript; choose one of the two! -->
 
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+</script>
 
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-    </script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 -->
