@@ -154,7 +154,7 @@ ALTER TABLE `internships`
 
 INSERT INTO `faculty` (`Sdrn`, `First_name`, `Middle_name`, `Last_name`, `DOB`, `Department`, `Contact_no`, `Addr`, `Email`, `Doj`, `Qualification`, `Desig`, `Password`, `OTP`) VALUES
 ('007', 'test', NULL, NULL, '0000-00-00', '', 1234567890, '-', '@', '0000-00-00', '', '', '123', 'hncqx5d61o'),
-('008', 'cshod', NULL, NULL, '0000-00-00', '', 1234567890, '-', 'computerhodrait@gmail.com', '0000-00-00', '', '', '1234', 'hncqx5d61o'),
+('008', 'cshod', NULL, NULL, '0000-00-00', 'computer', 1234567890, '-', 'computerhodrait@gmail.com', '0000-00-00', '', '', '1234', 'hncqx5d61o'),
 ('150', 'Leena', NULL, 'Ragha', '0000-00-00', '', 1234567890, '-', '@', '0000-00-00', '', '', '123', NULL),
 ('197', 'Snehal', '', 'Gaikwad', '0000-00-00', 'COMP', 1234567890, '-', '@', '0000-00-00', '', '', '123', NULL),
 ('248', 'Arpita', 'Goutam', 'Palchoudhury', '1967-06-21', 'COMP', 1234567890, '-', '@', '2001-09-10', 'Ph.D  ( English Literature)', ' Associate Professor', '123', NULL),

@@ -1,14 +1,15 @@
 <?php
-include_once("../assets/php_modules/common_methods.php");
-include_once("../assets/php_modules/form_details.php");
-include_once("../assets/send_mail.php");
+    include("../assets/php_modules/common_methods.php");
+    include("../assets/php_modules/form_details.php");
+    // include_once("../assets/send_mail.php");
 
-// internship_id and sdrn are through href you can see them in url
-$internship_id = $_GET['internship_id'];
-$form = get_form_details($internship_id);
-$sdrn = $form['Sdrn'];
-$faculty = get_faculty_details($sdrn);
-$status = $_GET['status'];
+
+    // internship_id and sdrn are through href you can see them in url
+    $internship_id = $_GET['internship_id'];
+    $form = get_form_details($internship_id);
+    $sdrn = $form['Sdrn'];
+    $faculty = get_faculty_details($sdrn);
+	$status = $_GET['status'];
 
 
 ?>
@@ -26,8 +27,8 @@ $status = $_GET['status'];
     <!-- font awesome cdn -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-    <!-- external javascript link -->
-    <script src="../assets/js/main.js"></script>
+  <!-- external javascript link -->
+  <script src="../assets/js/main.js"></script>
     <!-- external stylesheet link -->
     <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -47,7 +48,7 @@ $status = $_GET['status'];
         <?php include('../assets/php_modules/header.php');
 
 
-        ?>
+		?>
 
     </header>
     <!-- this will show internship topic -->
@@ -58,7 +59,7 @@ $status = $_GET['status'];
     <div class="container form-radius">
 
 
-        <form onsubmit="return Accept_response()" method="post">
+        <form onsubmit="return Accept_response()"  method="post" >
             <div class="mt-3 mb-3">
                 <label for="faculty_sdrn" class="form-label">Faculty SDRN </label>
                 <input type="text" class="form-control" id="faculty_sdrn" value="<?php echo $faculty['Sdrn'] ?>" disabled>
@@ -181,75 +182,64 @@ $status = $_GET['status'];
                     <input type="date" class="form-control input-required" id="submissiondate" style="text-align: center;" value="<?php echo $form['Date_submission'] ?>" disabled>
                 </div>
             </div>
-            <?php
-            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydin') {
-            ?>
-                <div class="row mb-3 no-gutters">
-                    <label for="submissiondate" class="form-label">Rejection reason</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control input-required" id="submissiondate" style="text-align: center;" value="<?php echo $form['Rejection_Reason'] ?>" disabled>
-                    </div>
+			<?php if($status == 'rejected')
+			{?>
+				            <div class="row mb-3 no-gutters">
+                <label for="submissiondate" class="form-label">Rejection reason</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control input-required" id="submissiondate" style="text-align: center;" value="<?php echo $form['Rejection_Reason'] ?>" disabled>
                 </div>
-        </form>
-    </div>
+            </div>
 
-    <div class=" d-flex justify-content-center mt-4 btn-container">
-        <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
+			    <div class=" d-flex justify-content-center mt-4 btn-container">
+        <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
     </div>
-<?php
-            } else if ($status == "pending") {
-?>
+	</form>
+	</div>
+				<?php
+			}else if($status == 'approved'){
+			?>			    <div class=" d-flex justify-content-center mt-4 btn-container">
+        <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
+    </div>
+	</form>
+			</div><?php
+			}else{ ?>
 
 
 
     <!-- Go back to home page -->
-    </form>
+     <div class=" d-flex justify-content-center mt-4 btn-container">
+     <button id="accept" class="btn text-decoration-none "  type="submit" style="background-color:Green;"  name="accept">Accept</button>
+	  </div>
+      </form>
+
+	   <form onsubmit="return Reject_response()"  method="post" >
+     <div class=" d-flex justify-content-center mt-4 btn-container">
+	 <button  id="reject" class="btn text-decoration-none"  type="submit" value="123"  name="reject">Reject</button>
+     </div>
+      </form>
+	 <?php
+			}
+	    if(isset($_POST["accept"]  )){
+     Set_Details('Dean',$_COOKIE["response"],$internship_id);
+	 }
+	    if(isset($_POST["reject"]  )){
+		  Set_Details('Dean',$_COOKIE["response"],$internship_id);
+	 }
+
+	 ?>
+
     </div>
-    <div class="d-flex justify-content-center">
-        <form onsubmit="return Accept_response()" method="post" style = "display: inline; margin:0px">
-            <div class=" d-flex justify-content-center mt-4 btn-container">
-                <button id="accept" class="btn text-decoration-none " type="submit" style="background-color:Green;" name="accept">Accept</button>
-            </div>
-        </form>
-
-        <form onsubmit="return Reject_response()" method="post" style = "display: inline ;margin : 0px">
-            <div class=" d-flex justify-content-center mt-4 btn-container">
-                <button id="reject" class="btn text-decoration-none" type="submit" value="123" name="reject">Reject</button>
-            </div>
-        </form>
-    </div>
-<?php
-            } else {
-?>
-</form>
-</div>
-<div class=" d-flex justify-content-center mt-4 btn-container">
-        <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
-    </div>
-    </form>
-    </div>
-<?php
-            }
-            if (isset($_POST["accept"])) {
-                Set_Details('HOD', "accept", $internship_id, $faculty['Email'], $form['Topic']);
-            }
-            if (isset($_POST["reject"])) {
-                Set_Details('HOD', $_COOKIE["response"], $internship_id, $faculty['Email'], $form['Topic']);
-            }
-
-?>
-
-</div>
 
 
-<!-- Optional JavaScript; choose one of the two! -->
+    <!-- Optional JavaScript; choose one of the two! -->
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-</script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
 
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 -->

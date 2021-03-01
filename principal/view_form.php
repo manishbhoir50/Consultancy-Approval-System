@@ -197,7 +197,7 @@ $status = $_GET['status'];
         <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
     </div>
 <?php
-            } else if ($status == "pending") {
+            } else if ($status == "approvedbyhod") {
 ?>
 
 
@@ -231,10 +231,10 @@ $status = $_GET['status'];
 <?php
             }
             if (isset($_POST["accept"])) {
-                Set_Details('HOD', "accept", $internship_id, $faculty['Email'], $form['Topic']);
+                Set_Details('principal', "accept", $internship_id, $faculty['Email'], $form['Topic']);
             }
             if (isset($_POST["reject"])) {
-                Set_Details('HOD', $_COOKIE["response"], $internship_id, $faculty['Email'], $form['Topic']);
+                Set_Details('principal', $_COOKIE["response"], $internship_id, $faculty['Email'], $form['Topic']);
             }
 
 ?>

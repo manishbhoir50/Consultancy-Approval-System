@@ -65,14 +65,14 @@ require("../assets/php_modules/connection.php");
 if (isset($_POST['submit'])) {
 
 
-  //session is started 
+  //session is started
   session_start();
   $email_id = $_POST['email_id'];
   $password = $_POST['password'];
   $_SESSION['log_in'] = 1;
 
   // query to fetch details of user with given email id and password
-  $query = "SELECT * FROM `admin_details` WHERE `Email_id` = '$email_id' AND `password` = '$password' AND `role` = 'hod'";
+  $query = "SELECT * FROM `admin_details` WHERE `Email_id` = '$email_id' AND `password` = '$password'";
   $result = mysqli_query($conn, $query);
  // echo mysqli_error($conn);
 
@@ -91,10 +91,9 @@ if (isset($_POST['submit'])) {
       $sdrn = $data["Sdrn"];
       $dept = $data['Department'];
       $_SESSION['dept'] = $dept;
-      $_SESSION['first_name'] = $data['First_name'];
       $_SESSION['sdrn'] = $sdrn;
       $_SESSION['email_id'] = $email_id;
-      header("location: ./home.php?dept=$dept");
+      header("location: ./home.php");
     }
   }
 }

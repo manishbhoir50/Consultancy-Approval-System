@@ -40,7 +40,7 @@ $skills = array("no required", "no required", "no required", "phd");
 $date_submission = array("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01");
 $status = array("approved", "approved", "pending", "completed");
 
-for($i = 0 ; $i < 4 ; $i++){
+/*for($i = 0 ; $i < 4 ; $i++){
     for($j = 0 ; $j < 4; $j++){
         $query = "INSERT INTO `internships` (`Sdrn`, `Topic`, `Consultancy_Type`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_Submission`, `status`) VALUES ('$sdrn[$i]', '$topic[$j]', '$consultancy_type[$j]', '$tentative_amount[$j]', '$abstract[$j]', '$member_count[$j]', '$from_date[$j]', '$to_date[$j]', '$skills[$j]', '$date_submission[$j]', '$status[$j]')";
        // echo $query;
@@ -50,14 +50,14 @@ for($i = 0 ; $i < 4 ; $i++){
         else
         echo mysqli_error($conn);
     }
-}
+}*/
 
-$username = array('shubham', 'aditya');
-$password = array('1234', '1234');
-$email_id = array('shubhampatil65@gmail.com', 'computerhodrait@gmail.com');
-$phone_no = array(1234, 1234);
-$OTP = array('123', '123');
-for($i = 0 ; $i < 2; $i++){
+$username = array('shubham', 'cshod', 'princi');
+$password = array('1234', '1234', '1234');
+$email_id = array('shubhampatil65@gmail.com', 'computerhodrait@gmail.com', 'principalrait189@gmail.com');
+$phone_no = array(1234, 1234, 1234);
+$OTP = array('123', '123', '123');
+for($i = 0 ; $i < 3; $i++){
     $query = "INSERT INTO `admin_details`  VALUES ('$username[$i]', '$password[$i]', '$email_id[$i]', '$phone_no[$i]', '$OTP[$i]', 'hod')";
     // echo $query;
      $result = mysqli_query($conn, $query);

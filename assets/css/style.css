@@ -201,6 +201,55 @@ form {
     color: white;
 }
 
+/*style for principle*/
+#first{
+    margin-top: 50px;
+  padding: 0px;
+  text-align: center;
+
+}
+#second{
+  margin-top: 50px;
+  padding: 0px;
+  text-align: center;
+  width:
+}
+#third{
+margin-top: 50px;
+  padding: 0px;
+  text-align: center;
+}
+#four{
+margin-top: 50px;
+  padding: 0px;
+  text-align: center;
+}
+#five{
+margin-top: 50px;
+  padding: 0px;
+  text-align: center;
+}
+.card-img-top{
+  margin: 0 auto;
+  border-style: solid;
+  border-bottom: none;
+  border-width: thin;
+
+}
+.card{
+  border: none;
+}
+.card-body{
+  border-style: solid;
+  border-width: thin;
+  width: 85%;
+  margin: 0 auto;
+  border-top: none;
+}
+
+
+
+
 @keyframes beat {
     0% {
         transition: scale(1, 1)
