@@ -182,7 +182,7 @@ $status = $_GET['status'];
                 </div>
             </div>
             <?php
-            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydin') {
+            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydean') {
             ?>
                 <div class="row mb-3 no-gutters">
                     <label for="submissiondate" class="form-label">Rejection reason</label>

@@ -3,8 +3,19 @@ session_start();
 include_once("../assets/php_modules/connection.php");
 include_once("../assets/php_modules/common_methods.php");
 
+
 if (isset($_POST['log-out'])) {
     log_out();
+}
+
+$status = $_SESSION['status'];
+$is_date_clicked = false;
+$start_date = $_SESSION['start_date'];
+$end_date = $_SESSION['end_date']; 
+if(isset($_POST['go'])){
+    $start_date = $_SESSION['start_date'] = $_POST["start_date"];
+    $end_date = $_SESSION['end_date'] = $_POST["end_date"];
+    $is_date_clicked = true;
 }
 ?>
 
@@ -120,7 +131,7 @@ if (isset($_POST['log-out'])) {
     <main>
 
         <!-- your internship details -->
-        <h1 class="text-center text-uppercase mt-5 add-font">Your Internship details</h1>
+        <h1 class="text-center text-uppercase mt-3 add-font">Your Internship details</h1>
 
         <!-- flexbox containing buttons all pending approved completed rejected -->
         <form method="POST" class="btn-container d-flex justify-content-center w-100 flex-wrap">
@@ -131,46 +142,63 @@ if (isset($_POST['log-out'])) {
             <button href="rejected.html" class="btn loader" id="rejected" type="submit" name="rejected">rejected</button>
         </form>
 
+        <!-- start date and end date -->
+        <form method = "post" style = "margin-top : 20px">
+              <div class="d-flex justify-content-center">
+              <input type="date" name = "start_date" class = "mr-3" style = "margin-right : 10px !important" value = "<?php echo $start_date ?>">
+              <input type="date" name = "end_date" class = "ml-5" value = "<?php echo $end_date ?>">
+              </div>
+              <div class="btn-container mx-auto d-flex justify-content-center" style = "margin-top:10px; margin-bottom: 10px">
+                   <input type="submit" class="btn" name = "go" value = "get internships">
+              </div>
+        </form>
+         
         <!-- table  -->
 
-        <div class="table-container mx-auto mt-5" id="table">
+        <div class="table-container mx-auto mt-3" id="table">
             <?php
-            if (isset($_POST['pending'])) {
+            if (isset($_POST['pending']) || ($is_date_clicked && $status == "pending")) {
             ?>
                 <script>
                     clear_table(document.getElementById('pending'));
                 </script>
             <?php
-                $result = load_details('pending', 'faculty', $_SESSION['sdrn'], '');
-            } else if (isset($_POST['approved'])) {
+                $_SESSION['status'] = "pending";
+                $result = load_details('pending', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+            } else if (isset($_POST['approved']) || ($is_date_clicked && $status == "approved")) {
             ?>
                 <script>
                     clear_table(document.getElementById('approved'));
                 </script>
             <?php
-                $result = load_details('approved', 'faculty', $_SESSION['sdrn'], '');
-            } else if (isset($_POST['completed'])) {
+            $_SESSION['status'] = "approved";
+                $result = load_details('approved', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+            } else if (isset($_POST['completed']) || ($is_date_clicked && $status == "completed")) {
             ?>
                 <script>
                     clear_table(document.getElementById('completed'));
                 </script>
             <?php
-                $result = load_details('completed', 'faculty', $_SESSION['sdrn'], '');
-            } else if (isset($_POST['rejected'])) {
+            $_SESSION['status'] = "completed";
+                $result = load_details('completed', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+            } else if (isset($_POST['rejected']) || ($is_date_clicked && $status == "rejected")) {
             ?>
                 <script>
                     clear_table(document.getElementById('rejected'));
                 </script>
             <?php
-                $result = load_details('rejected', 'faculty', $_SESSION['sdrn'], '');
+            $_SESSION['status'] = "rejected";
+                $result = load_details('rejected', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
             } else {
             ?>
                 <script>
                     clear_table(document.getElementById('all'));
                 </script>
             <?php
-                $result = load_details('all', 'faculty', $_SESSION['sdrn'], '');
+            $_SESSION['status'] = "all";
+                $result = load_details('all', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
             }
+            $is_date_clicked = false;
             // if no internship found then message will be displayed otherwise details whatever we found will be displayed
             if (mysqli_num_rows($result) == 0) {
             ?>

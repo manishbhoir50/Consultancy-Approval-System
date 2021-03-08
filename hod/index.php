@@ -59,7 +59,8 @@
 </html>
 
 <?php
-require("../assets/php_modules/connection.php");
+include_once("../assets/php_modules/connection.php");
+include_once("../assets/php_modules/common_methods.php");
 
 // on clicking login button this code will redirect to home.php
 if (isset($_POST['submit'])) {
@@ -94,6 +95,9 @@ if (isset($_POST['submit'])) {
       $_SESSION['first_name'] = $data['First_name'];
       $_SESSION['sdrn'] = $sdrn;
       $_SESSION['email_id'] = $email_id;
+      $_SESSION['start_date'] = "2001-01-01";
+      $_SESSION['end_date'] = display_date();
+      $_SESSION['status'] = 'all';
       header("location: ./home.php?dept=$dept");
     }
   }

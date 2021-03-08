@@ -182,7 +182,7 @@ $status = $_GET['status'];
                 </div>
             </div>
             <?php
-            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydin') {
+            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydean') {
             ?>
                 <div class="row mb-3 no-gutters">
                     <label for="submissiondate" class="form-label">Rejection reason</label>
@@ -194,10 +194,10 @@ $status = $_GET['status'];
     </div>
 
     <div class=" d-flex justify-content-center mt-4 btn-container">
-        <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
+        <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
     </div>
 <?php
-            } else if ($status == "approvedbyhod") {
+            } else if ($status == "approvedbydean") {
 ?>
 
 
@@ -224,7 +224,7 @@ $status = $_GET['status'];
 </form>
 </div>
 <div class=" d-flex justify-content-center mt-4 btn-container">
-        <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
+        <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
     </div>
     </form>
     </div>

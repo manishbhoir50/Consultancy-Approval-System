@@ -9,7 +9,7 @@ $first_name = array("shivam", "chetan", "aditya", "shubham");
 $middle_name = array("balaji", "abc", "xyz", "pqr");
 $last_name = array("kendre", "khairnar", "desai", "patil");
 $dob =  array("2001-01-01", "2001-01-01", "2001-01-01", "2000-01-01");
-$dept = array("computer", "computer", "computer", "electronics");
+$dept = array("computer", "computer", "IT", "IT");
 $contact = array(1234, 1234, 1234, 1234);
 $addr = array("abc", "abc", "abc", "abc");
 $email = array("shivamkendre78@gmail.com", "chetankhairnar28@gmail.com", "computerhodrait@gmail.com", "shubhampatil65@gmail.com");
@@ -38,19 +38,19 @@ $from_date = array("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01");
 $to_date =  array("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01");
 $skills = array("no required", "no required", "no required", "phd");
 $date_submission = array("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01");
-$status = array("approved", "approved", "pending", "completed");
+$status = array("pending", "pending", "pending", "pending");
 
-/*for($i = 0 ; $i < 4 ; $i++){
+for($i = 0 ; $i < 4 ; $i++){
     for($j = 0 ; $j < 4; $j++){
         $query = "INSERT INTO `internships` (`Sdrn`, `Topic`, `Consultancy_Type`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_Submission`, `status`) VALUES ('$sdrn[$i]', '$topic[$j]', '$consultancy_type[$j]', '$tentative_amount[$j]', '$abstract[$j]', '$member_count[$j]', '$from_date[$j]', '$to_date[$j]', '$skills[$j]', '$date_submission[$j]', '$status[$j]')";
-       // echo $query;
+       echo $query;
         $result = mysqli_query($conn, $query);
         if($result)
         echo "success";
         else
         echo mysqli_error($conn);
     }
-}*/
+}
 
 $username = array('shubham', 'cshod', 'princi');
 $password = array('1234', '1234', '1234');

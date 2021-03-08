@@ -21,7 +21,7 @@ function log_out()
 // sdrn - sdrn of faculty
 // dept - computer ertc extc instrumentation IT
 
-function load_details($required, $role, $sdrn, $dept)
+function load_details($required, $role, $sdrn, $dept, $start_date, $end_date)
 {
 
     global $conn;
@@ -29,43 +29,43 @@ function load_details($required, $role, $sdrn, $dept)
     // query for faculty module
     if ($role == "faculty") {
         if ($required == "all")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "pending") {
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `status` IN ('pending', 'approved by hod', 'approved by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` IN ('pending', 'approved by hod', 'approved by dean') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         } else if ($required == "rejected") {
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `status` IN ('rejected by din', 'rejected by hod', 'rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` IN ('rejected by dean', 'rejected by hod', 'rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         } else
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `status` = '$required' ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` = '$sdrn' AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` = '$required' ORDER BY `Date_submission` DESC, `internship_id` DESC";
     } else if ($role == "hod") {
         if ($required == "all")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "pending")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `status` IN ('pending', 'approved by hod', 'approved by principal')  ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` IN ('pending', 'approved by hod', 'approved by dean')  ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "rejected") {
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `status` IN ('rejected by din', 'rejected by hod', 'rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` IN ('rejected by dean', 'rejected by hod', 'rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         }
          else
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `status` = '$required'  ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` = '$required'  ORDER BY `Date_submission` DESC, `internship_id` DESC";
     }else if ($role == "Principle") {
         if ($required == "all")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `HOD_Approval`= 1 ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `DC_Approval`= 1 ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "pending")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `HOD_Approval`= 1 AND `status` IN ('approved by hod' , 'approved by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `DC_Approval`= 1 AND `status` IN ('approved by dean') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "rejected") {
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `HOD_Approval`= 1 AND `status` IN ('rejected by din', 'rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `DC_Approval`= 1 AND `status` IN ('rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         }
          else
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `status` = '$required'  ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` = '$required'  ORDER BY `Date_submission` DESC, `internship_id` DESC";
     }else if ($role == "Dean") {
         if ($required == "all")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Principle_Approval`= 1 ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `HOD_Approval`= 1 ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "pending")
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Principle_Approval`= 1 AND `status` IN ('approved by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `HOD_Approval`= 1 AND `status` IN ('approved by hod', 'approved by dean') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         else if ($required == "rejected") {
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Principle_Approval`= 1 AND `status` IN ('rejected by din') ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `HOD_Approval`= 1 AND `status` IN ('rejected by dean', 'rejected by principal') ORDER BY `Date_submission` DESC, `internship_id` DESC";
         }
          else
-            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `status` = '$required'  ORDER BY `Date_submission` DESC, `internship_id` DESC";
+            $query = "SELECT  `internship_id`, `Topic`, `status`, `Date_submission` FROM `internships` WHERE `Sdrn` IN ( SELECT Sdrn FROM faculty WHERE Department = '$dept') AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' AND `status` = '$required'  ORDER BY `Date_submission` DESC, `internship_id` DESC";
     }
 
 
@@ -166,40 +166,54 @@ function Set_Details($role, $response, $internship_id, $email, $topic)
             echo "success";
             else
             mysqli_error($conn);
-            $body = $topic.' is approved by hod and sent to principal<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
-             sendMail($email, $topic.' is  approved by hod', $body);
 
-
-
-             $email = 'principalrait189@gmail.com';
-             $subject = $topic.'is sent for approval';
-             $body = $topic.' is approved by hod and sent for approval<br>for more details <a href = "localhost/internship-approval-master/principal">click here</a>';
+            $query = "SELECT `Email_id` FROM `admin_details` WHERE `role` = 'dean'";
+            $result = mysqli_query($conn, $query);
+            echo mysqli_error($conn);
+            $email = mysqli_fetch_assoc($result)['Email_id'];
+            echo $email;
+             
+             $subject = $topic.' is sent for approval';
+             $body = $topic.' is approved by hod and sent for approval<br>for more details <a href = "localhost/internship-approval-master/dean">click here</a>';
              sendMail($email, $subject, $body);
     ?>
             <script>
                 alert("form is approved")
-                window.location.href = "./home.php"
+               window.location.href = "./home.php"
             </script>
     <?php
         } else if ($role == 'principal') {
-            $query = "UPDATE `internships` SET `Principal_Approval` = 1, `status` = 'approved by principal' WHERE `internship_id` = '$internship_id'";
+            $query = "UPDATE `internships` SET `Principal_Approval` = 1, `status` = 'approved' WHERE `internship_id` = '$internship_id'";
             $result = mysqli_query($conn, $query);
             if($result)
             echo "success";
             else
            echo  mysqli_error($conn);
-            $body = $topic.' is approved by principal and sent to din<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
-             sendMail($email, $topic.' is  approved by principal', $body);
+            $body = $topic.' is approved <br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
+             sendMail($email, $topic.' is  approved', $body);
              ?>
             <script>
                 alert("form is approved")
                 window.location.href = "./dept.php"
             </script>
     <?php
-            
+
         } else if ($role == 'Dean') {
-            $query = "UPDATE `internships` SET `DC_Approval` = 1, `status` = 'approved' WHERE 'internship_id' = '$internship_id'";
+            $query = "UPDATE `internships` SET `DC_Approval` = 1, `status` = 'approved by dean' WHERE `internship_id` = '$internship_id'";
             mysqli_query($conn, $query);
+
+            $query = "SELECT `Email_id` FROM `admin_details` WHERE `role` = 'principal'";
+            $result = mysqli_query($conn, $query);
+            $email = mysqli_fetch_assoc($result)['Email_id'];
+            $subject = $topic.' is sent for approval';
+            $body = $topic.' is approved by Dean and sent for approval<br>for more details <a href = "localhost/internship-approval-master/principal">click here</a>';
+            sendMail($email, $subject, $body);
+            ?>
+           <script>
+               alert("form is approved")
+               window.location.href = "./dept.php"
+           </script>
+           <?php
         }
     } else {
         if ($role == 'HOD') {
@@ -226,7 +240,7 @@ function Set_Details($role, $response, $internship_id, $email, $topic)
             echo mysqli_error($conn);
 
             $body = $topic.' is rejected by principal<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
-             sendMail($email, $topic.' is rejected by hod', $body);
+             sendMail($email, $topic.' is rejected by principal', $body);
             ?>
             <script>
                 alert("form is rejected")
@@ -234,8 +248,17 @@ function Set_Details($role, $response, $internship_id, $email, $topic)
             </script>
     <?php
         } else if ($role == 'Dean') {
-            $query = "UPDATE `internships` SET  `status` = 'rejected by din' , 'Rejection_Reason'= '$response' WHERE `internship_id` = '$internship_id'";
+            $query = "UPDATE `internships` SET  `status` = 'rejected by dean' , `Rejection_Reason`= '$response' WHERE `internship_id` = '$internship_id'";
             mysqli_query($conn, $query);
+
+            $body = $topic.' is rejected by din<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
+             sendMail($email, $topic.' is rejected by din', $body);
+            ?>
+            <script>
+                alert("form is rejected")
+                window.location.href = "./dept.php"
+            </script>
+    <?php
         }
     }
     ?>

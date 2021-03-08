@@ -1,123 +1,160 @@
-<!DOCTYPE html>
+<?php
+include("../assets/php_modules/connection.php");
+include("../assets/php_modules/common_methods.php");
+?>
+
+<!doctype html>
 <html lang="en">
 
 <head>
-    <title>Principle</title>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- external javascript link -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- jquery cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- google font cdn -->
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+
+    <!-- external stylesheet link -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Home</title>
 </head>
 
 <body>
-    <header>
-        <div class="main-header">
-            <div class="container-fluid main_menu">
-                <div class="row no-gutters">
-                    <div class="col-md-10 col-12 mx-auto">
-                        <nav class="navbar navbar-expand-lg">
-                            <div class="container-fluid">
+
+    <!-- navbar of page -->
+    <header id="header">
+
+        <!-- header we have already created we are calling header.php file -->
+        <?php include('../assets/php_modules/header.php') ?>
+
+    </header>
 
 
-                                <!-- RAIT Internship -->
-                                <a class="navbar-brand" href="#">RAIT Internship</a>
+
+    <main>
 
 
-                                <!-- menu on right side -->
-                                <form class="d-flex form-width justify-content-between">
+        <!-- success message after login cookie is used to keep track that  user have log in recently but not refreshed page -->
+        <?php
+        if ($_SESSION['log_in']) {
+        ?>
+            <h1 class="text-center alert alert-success text-dark" id="success-msg">You have login successfully</h1>
 
-                                    <!-- apply button -->
+            <!-- javascript to remove success alert -->
+            <script>
+                let success_msg = document.getElementById("success-msg");
+                setTimeout((succcess_msg) => {
+                    success_msg.style.display = "none";
+                }, 3000, success_msg)
+            </script>
+        <?php
+            $_SESSION['log_in'] = 0;
+        }
+        ?>
 
 
-                                    <!-- profile -->
-                                    <div class="d-flex align-items-center justify-content-between profile-container">
-                                        <div class="profile d-flex justify-content-center align-items-end">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                        <span>Dean</span>
-                                    </div>
-                                </form>
-                            </div>
-                        </nav>
+        <h1 class="text-center mt-5 add-font">Departments</h1>
+        <div class="departments">
+            <div class="row justify-content-center">
+                <!-- computer department -->
+                <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
+                    <div class="card mx-auto" style="width: 90%;">
+                        <img src="../assets/images/cs.jfif" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
+                                <button type="submit" class="btn btn-theme" name="computer">Computer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- IT department -->
+                <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
+                    <div class="card mx-auto" style="width: 90%;">
+                        <img src="../assets/images/it.jfif" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
+                                <button type="submit" class="btn btn-theme" name="IT">Information technology</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- electronics department -->
+                <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
+                    <div class="card mx-auto" style="width: 90%;">
+                        <img src="../assets/images/ertc.jfif" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
+                                <button type="submit" class="btn btn-theme" name="electronics">electronics</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="row justify-content-center">
+
+                <!-- extc department -->
+                <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
+                    <div class="card mx-auto" style="width: 90%;">
+                        <img src="../assets/images/entc.jfif" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
+                                <button type="submit" class="btn btn-theme" name="entc">EXTC</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- instrumentation department -->
+                <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
+                    <div class="card mx-auto" style="width: 90%;">
+                        <img src="../assets/images/instru.jfif" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
+                                <button type="submit" class="btn btn-theme" name="instrumentation">instrumentation</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </header>
-    <form action="getDept.php" method="post">
-    <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3  ">
+    </main>
+    <!-- Optional JavaScript; choose one of the two! -->
 
-            <div id="first" class=" col card" style="width:300px">
-                <img class="card-img-top"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw7ZGrIlT-hI1PbeRPNFcWHXqWRjYtW22g0w&usqp=CAU"
-                    alt="Card image" style="width:85%">
-                <div class="card-body">
-                    <h4 class="card-title">Computer Engineering</h4>
-                    <p class="card-text">HOD Name.</p>
-                    <button role="button" type='submit' class="btn btn-primary" name="computer">Internships</button>
-                </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
 
-            </div>
-
-            <div id="second" class="col card" style="width:300px">
-                <img class="card-img-top"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV7FNu9E3LfpCjjSMZnZ2KSs7fImBo-Pyogw&usqp=CAU"
-                    alt="Card image" style="width:85%">
-                <div class="card-body">
-                    <h4 class="card-title">Information Technology</h4>
-                    <p class="card-text">HOD Name.</p>
-                    <button role="button" type='submit' class="btn btn-primary" name="IT">Internships</button>
-                </div>
-
-            </div>
-
-            <div id="third" class="col card" style="width:300px">
-                <img class="card-img-top"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkzDCEOcH5-9Icesqf9uVlx70zR4y6IbRlfg&usqp=CAU"
-                    alt="Card image" style="width:85%">
-                <div class="card-body">
-                    <h4 class="card-title">Electronics Engineering</h4>
-                    <p class="card-text">HOD Name.</p>
-                    <button role="button" type='submit' class="btn btn-primary" name="electronic">Internships</button>
-
-                </div>
-            </div>
-
-            <div id="four" class=" col card" style="width:300px">
-                <img class="card-img-top"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT53bWPyBFYdE52BsQnCiZWPfAdBFvC8xpiBw&usqp=CAU"
-                    alt="Card image" style="width:85%">
-                <div class="card-body">
-                    <h4 class="card-title">Electronics and Telecommunication Engineering</h4>
-                    <p class="card-text">HOD Name.</p>
-                    <button role="button" type='submit' class="btn btn-primary" name="entc">Internships</button>
-                </div>
-
-            </div>
-
-            <div id="five" class=" col card" style="width:300px">
-                <img class="card-img-top"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpow0Ev0S0AnQoVw9N89Wqb94wWiaEF-2FBA&usqp=CAU"
-                    alt="Card image" style="width:85%">
-                <div class="card-body">
-                    <h4 class="card-title">Instrumentation Engineering</h4>
-                    <p class="card-text">HOD Name.</p>
-                    <button role="button" type='submit' class="btn btn-primary" name="instrumentation">Internships</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    </form>
-
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
 </body>
-
 
 </html>

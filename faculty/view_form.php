@@ -178,7 +178,7 @@ $faculty = get_faculty_details($sdrn);
 
             <?php
 
-            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydin') {
+            if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydean') {
             ?>
                 <div class="row mb-3 no-gutters">
                     <label for="submissiondate" class="form-label">Rejection reason</label>
