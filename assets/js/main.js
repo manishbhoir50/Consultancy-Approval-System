@@ -34,8 +34,11 @@ let validate_me = ()=>{
         }
     }
     if(status){
-        if(confirm("Once you submitted you can't edit form/ndo you want to submit form?"))
+        if(confirm("Once you submitted you can't edit form\ndo you want to submit form?"))
         alert("Your form is submmited")
+        else{
+        status = false;
+        }
     }else{
        error_msg.style.display = "block"
        alert("Please fill all required fileds before submit")
@@ -44,8 +47,29 @@ let validate_me = ()=>{
 }
 
 
+//when user clicks reject
+let Reject_response = ()=>{
+		   let reason = prompt("enter reason for rejection", "not applicable topic");
+		   if (reason != null) {
+                document.cookie = "response = "+reason;
+                return true;
+		   }else
+           return false
+ }
+
+
+//when user clicks accept		
+let Accept_response = ()=>{			 
+			   if(confirm("Are You sure you want to  Accept"))
+               return true;
+               else 
+               return false;
+}
+
+
 // method to remove red border on input field on changing it also to remove error alert
 let remove_error = (element)=>{
+    
     let error_msg = document.getElementById('error-msg')
     error_msg.style.display = "none";
     element.style.outline = "none"

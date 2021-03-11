@@ -1,22 +1,6 @@
 <?php
-session_start();
-include_once("../assets/php_modules/connection.php");
-include_once("../assets/php_modules/common_methods.php");
-
-
-if (isset($_POST['log-out'])) {
-    log_out();
-}
-
-$status = $_SESSION['status'];
-$is_date_clicked = false;
-$start_date = $_SESSION['start_date'];
-$end_date = $_SESSION['end_date']; 
-if(isset($_POST['go'])){
-    $start_date = $_SESSION['start_date'] = $_POST["start_date"];
-    $end_date = $_SESSION['end_date'] = $_POST["end_date"];
-    $is_date_clicked = true;
-}
+include("../assets/php_modules/connection.php");
+include("../assets/php_modules/common_methods.php");
 ?>
 
 <!doctype html>
@@ -51,66 +35,31 @@ if(isset($_POST['go'])){
 <body>
 
     <!-- navbar of page -->
-    <header class="position-sticky">
+    <header id="header">
+        
+        <!-- header we have already created we are calling header.php file -->
+        <?php include('../assets/php_modules/header.php') ?>
 
-        <!-- college logo and name -->
-        <div class="collge-header d-flex align-items-center">
-            <div class="college-logo">
-                <img src="../assets/images/logo.jpeg" alt="dy patil logo" id="college-logo">
-            </div>
-            <div class="college-name add-font">
-                <h1 class="text-center" id="college-name">Ramrao adik institute of technology</h1>
-            </div>
-        </div>
-
-        <!-- actual colored navbar -->
-        <div class="main-header">
-            <div class="container-fluid main_menu">
-                <div class="row no-gutters">
-                    <div class="col-md-10 col-12 mx-auto">
-                        <nav class="navbar navbar-expand-sm navbar-light">
-                            <div class="container-fluid">
-
-
-                                <!-- RAIT Internship -->
-                                <a class="navbar-brand heart-beat-animation" href="#">RAIT Internship</a>
-
-                                <button class="navbar-toggler mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                                    <!-- menu on right side -->
-                                    <form class="d-flex form-width justify-content-between flex-wrap-reverse mt-2" method="POST">
-
-                                        <!-- buttons on right side -->
-                                        <div class="form-btn-container mt-2">
-                                            <!-- apply button -->
-                                            <a class="btn btn-light mr-2" href="./apply.php">Apply</a>
-
-                                            <!-- log out button -->
-                                            <button class="btn btn-light" href="#" type="submit" name="log-out">log out</button>
-                                        </div>
-
-                                        <!-- profile -->
-                                        <div class="d-flex align-items-center justify-content-center profile-container">
-                                            <div class="profile d-flex justify-content-center align-items-end" style = "margin-right : 5px !important">
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                            <span><?php echo $_SESSION['first_name'] ?></span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
     </header>
-
     <!-- success message after login cookie is used to keep track that  user have log in recently but not refreshed page -->
     <?php
+
+
+    if (isset($_POST['log-out'])) {
+        log_out();
+    }
+
+    $status = $_SESSION['status'];
+    $is_date_clicked = false;
+    $start_date = $_SESSION['start_date'];
+    $end_date = $_SESSION['end_date'];
+    if (isset($_POST['go'])) {
+        $start_date = $_SESSION['start_date'] = $_POST["start_date"];
+        $end_date = $_SESSION['end_date'] = $_POST["end_date"];
+        $is_date_clicked = true;
+    }
+
+
     if ($_SESSION['log_in']) {
     ?>
         <h1 class="text-center alert alert-success text-dark" id="success-msg">You have login successfully</h1>
@@ -143,20 +92,22 @@ if(isset($_POST['go'])){
         </form>
 
         <!-- start date and end date -->
-        <form method = "post" style = "margin-top : 20px">
-              <div class="d-flex justify-content-center">
-              <input type="date" name = "start_date" class = "mr-3" style = "margin-right : 10px !important" value = "<?php echo $start_date ?>">
-              <input type="date" name = "end_date" class = "ml-5" value = "<?php echo $end_date ?>">
-              </div>
-              <div class="btn-container mx-auto d-flex justify-content-center" style = "margin-top:10px; margin-bottom: 10px">
-                   <input type="submit" class="btn" name = "go" value = "get internships">
-              </div>
+        <form method="post" style="margin-top : 20px">
+            <div class="d-flex justify-content-center">
+                <input type="date" name="start_date" class="mr-3" style="margin-right : 10px !important" value="<?php echo $start_date ?>">
+                <input type="date" name="end_date" class="ml-5" value="<?php echo $end_date ?>">
+            </div>
+            <div class="btn-container mx-auto d-flex justify-content-center" style="margin-top:10px; margin-bottom: 10px">
+                <input type="submit" class="btn" name="go" value="get internships">
+            </div>
         </form>
-         
+
+
         <!-- table  -->
 
-        <div class="table-container mx-auto mt-3" id="table">
+        <div class="table-container mx-auto mt-5" id="table">
             <?php
+            $dept = $_SESSION["dept"];
             if (isset($_POST['pending']) || ($is_date_clicked && $status == "pending")) {
             ?>
                 <script>
@@ -164,39 +115,39 @@ if(isset($_POST['go'])){
                 </script>
             <?php
                 $_SESSION['status'] = "pending";
-                $result = load_details('pending', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+                $result = load_details('pending', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
             } else if (isset($_POST['approved']) || ($is_date_clicked && $status == "approved")) {
             ?>
                 <script>
                     clear_table(document.getElementById('approved'));
                 </script>
             <?php
-            $_SESSION['status'] = "approved";
-                $result = load_details('approved', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+                $_SESSION['status'] = "approved";
+                $result = load_details('approved', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
             } else if (isset($_POST['completed']) || ($is_date_clicked && $status == "completed")) {
             ?>
                 <script>
                     clear_table(document.getElementById('completed'));
                 </script>
             <?php
-            $_SESSION['status'] = "completed";
-                $result = load_details('completed', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+                $_SESSION['status'] = "completed";
+                $result = load_details('completed', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
             } else if (isset($_POST['rejected']) || ($is_date_clicked && $status == "rejected")) {
             ?>
                 <script>
                     clear_table(document.getElementById('rejected'));
                 </script>
             <?php
-            $_SESSION['status'] = "rejected";
-                $result = load_details('rejected', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+                $_SESSION['status'] = "rejected";
+                $result = load_details('rejected', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
             } else {
             ?>
                 <script>
                     clear_table(document.getElementById('all'));
                 </script>
             <?php
-            $_SESSION['status'] = "all";
-                $result = load_details('all', 'faculty', $_SESSION['sdrn'], '', $start_date, $end_date);
+                $_SESSION['status'] = "all";
+                $result = load_details('all', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
             }
             $is_date_clicked = false;
             // if no internship found then message will be displayed otherwise details whatever we found will be displayed

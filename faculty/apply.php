@@ -34,9 +34,10 @@
 
   <header id="header">
     <?php
-    include("../assets/php_modules/connection.php");
-    include("../assets/php_modules/common_methods.php");
-    include("../assets/php_modules/header.php");
+    include_once("../assets/php_modules/connection.php");
+    include_once("../assets/php_modules/common_methods.php");
+    include_once("../assets/php_modules/header.php");
+    include_once('../assets/send_mail.php');
     $faculty = display_details();
     $date = display_date();
 
@@ -52,10 +53,11 @@
       $startdate = $_POST['startdate'];
       $enddate = $_POST['enddate'];
       $skill = $_POST['skill'];
+      $addr = $_POST['location'];
       $submission_date = $date;
 
 
-      upload_details($sdrn, $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
+      upload_details($sdrn,$addr,  $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
       
     }
     
@@ -68,7 +70,8 @@
   <h3 class="text-center mb-3 add-font validation-msg alert alert-danger add-font" id="error-msg">Please fill all the required fields*</h3>
 
   <div class="container form-radius">
-    <form onsubmit="return validate_me()" method="post" enctype="multipart/form-data">
+  
+  <form onsubmit="return validate_me()" method="post" enctype="multipart/form-data">
       <div class="mt-3 mb-3">
         <label for="faculty_sdrn" class="form-label">Faculty SDRN </label>
         <input type="text" class="form-control" id="faculty_sdrn" name="sdrn" placeholder="Enter your SDRN" value="<?php echo $faculty['Sdrn'] ?>" disabled>
@@ -93,8 +96,8 @@
       </div>
 
       <div class="col-12 mb-3">
-        <label for="inputAddress" class="form-label">Location/Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address" value="<?php echo $faculty['Addr'] ?>" disabled>
+        <label for="inputAddress" class="form-label label-required">Location/Address</label>
+        <input type="text" class="form-control input-required" id="inputAddress" placeholder="Enter your Address" name = "location"  onchange="remove_error(this)">
       </div>
 
       <!-- topic - this is extra field added -->
@@ -122,8 +125,8 @@
       </fieldset>
 
       <div class="mb-3 no-gutters">
-        <label for="company_name" class="form-label no-gutters"> Company Name </label>
-        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter Company Name" value="<?php if (isset($company_name)) echo $company_name ?>">
+        <label for="company_name" class="form-label no-gutters label-required">Organisation/Company Name </label>
+        <input type="text" class="form-control input-required" id="company_name" name="company_name" placeholder="Enter Company Name" onchange="remove_error(this)">
       </div>
 
       <label for="amount" class="form-label label-required">Tentative Amount</label>
@@ -147,23 +150,15 @@
         </div>
       </div>
 
-      <label for="date" class="form-label">Expected Timeline -</label>
+      <label for="date" class="form-label label-required">Expected Timeline -</label>
       <div class="mb-3 row ">
-        <div class="col mb-1"> From Date <input type="date" name="startdate" id="startdate"> </div>
-        <div class="col mb-1"> To Date <input type="date" name="enddate" id="enddate"> </div>
+        <div class="col mb-1"> From Date <input type="date" name="startdate" id="startdate" class = "input-required" onchange="remove_error(this)"> </div>
+        <div class="col mb-1"> To Date <input type="date" name="enddate" id="enddate" class = "input-required" onchange="remove_error(this)"> </div>
       </div>
 
       <div class="mb-3">
         <label for="skillset" class="form-label label-required"> Skill Set/ Technology Required </label>
         <input type="text" class="form-control input-required" id="skillset" placeholder="Enter Skills Required" name="skill" onchange="remove_error(this)">
-      </div>
-
-
-      <div class="row mb-3 no-gutters">
-        <label for="submissiondate" class="form-label label-required">Date of Submission for Approval</label>
-        <div class="col-sm-7">
-          <input type="text" class="form-control input-required" id="submissiondate" style="text-align: center;" name="submission_date" onchange="remove_error(this)" value="<?php echo $date ?>" disabled>
-        </div>
       </div>
 
       <!-- submit button -->

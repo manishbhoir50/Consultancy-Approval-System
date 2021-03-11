@@ -65,15 +65,17 @@ include_once("../assets/php_modules/common_methods.php");
 // on clicking login button this code will redirect to home.php
 if (isset($_POST['submit'])) {
 
-  //session is started 
+
+  //session is started
   session_start();
   $email_id = $_POST['email_id'];
   $password = $_POST['password'];
   $_SESSION['log_in'] = 1;
 
   // query to fetch details of user with given email id and password
-  $query = "SELECT * FROM `faculty` WHERE `Email` = '$email_id' AND `Password` = '$password'";
+  $query = "SELECT * FROM `admin_details` WHERE  `Email_id` = '$email_id'AND `password` = '$password' AND `role` = 'Dean'";
   $result = mysqli_query($conn, $query);
+ // echo mysqli_error($conn);
 
   // if we found 0 records with given email id and password then pop up will come
   if ($result) {
@@ -84,16 +86,19 @@ if (isset($_POST['submit'])) {
       </script>
 <?php
     } else {
+     /* $query = "SELECT * FROM `faculty` WHERE `Email` = '$email_id' AND `Password` = '$password'";
+      $result = mysqli_query($conn, $query);
       $data = mysqli_fetch_assoc($result);
       $sdrn = $data["Sdrn"];
-      $_SESSION["first_name"] = $data["First_name"];
-      $_SESSION['email_id'] = $email_id;
+      $dept = $data['Department'];
+      $_SESSION['dept'] = $dept;
       $_SESSION['sdrn'] = $sdrn;
+      $_SESSION['email_id'] = $email_id;*/
       $_SESSION['start_date'] = "2001-01-01";
       $_SESSION['end_date'] = display_date();
       $_SESSION['status'] = 'all';
-      $dept =  $_SESSION['dept'] = $data["Department"];
-      header("location: ./home.php?dept=$dept");
+      $_SESSION['first_name'] = 'Dean';
+      header("location: ./home.php");
     }
   }
 }

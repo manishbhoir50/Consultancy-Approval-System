@@ -1,14 +1,16 @@
 <?php
-include("../assets/php_modules/common_methods.php");
-include("../assets/php_modules/form_details.php");
+include_once("../assets/php_modules/common_methods.php");
+include_once("../assets/php_modules/form_details.php");
+include_once("../assets/send_mail.php");
 
-
-// internship_id and sdrn are through href you can see them in url 
+// internship_id and sdrn are through href you can see them in url
 $internship_id = $_GET['internship_id'];
 $form = get_form_details($internship_id);
 $sdrn = $form['Sdrn'];
-$status = $_GET['status'];
 $faculty = get_faculty_details($sdrn);
+$status = $_GET['status'];
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,7 +26,8 @@ $faculty = get_faculty_details($sdrn);
     <!-- font awesome cdn -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-
+    <!-- external javascript link -->
+    <script src="../assets/js/main.js"></script>
     <!-- external stylesheet link -->
     <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -41,7 +44,10 @@ $faculty = get_faculty_details($sdrn);
     <header id="header">
 
         <!-- header we have already created we are calling header.php file -->
-        <?php include('../assets/php_modules/header.php') ?>
+        <?php include('../assets/php_modules/header.php');
+
+
+        ?>
 
     </header>
     <!-- this will show internship topic -->
@@ -52,7 +58,7 @@ $faculty = get_faculty_details($sdrn);
     <div class="container form-radius">
 
 
-        <form>
+        <form onsubmit="return Accept_response()" method="post">
             <div class="mt-3 mb-3">
                 <label for="faculty_sdrn" class="form-label">Faculty SDRN </label>
                 <input type="text" class="form-control" id="faculty_sdrn" value="<?php echo $faculty['Sdrn'] ?>" disabled>
@@ -175,27 +181,64 @@ $faculty = get_faculty_details($sdrn);
                     <input type="date" class="form-control input-required" id="submissiondate" style="text-align: center;" value="<?php echo $form['Date_submission'] ?>" disabled>
                 </div>
             </div>
-
             <?php
-
             if ($status == 'rejectedbyhod' || $status == 'rejectedbyprincipal' || $status == 'rejectedbydean') {
             ?>
                 <div class="row mb-3 no-gutters">
                     <label for="submissiondate" class="form-label">Rejection reason</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control input-required" id="inputAdress" style="text-align: center;" value="<?php echo $form['Rejection_Reason'] ?>" disabled>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control input-required" id="submissiondate" style="text-align: center;" value="<?php echo $form['Rejection_Reason'] ?>" disabled>
                     </div>
                 </div>
         </form>
     </div>
-           <?php
-            }
-           ?>
+
+    <div class=" d-flex justify-content-center mt-4 btn-container">
+        <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
+    </div>
+<?php
+            } else if ($status == "approvedbyhod") {
+?>
+
+
+
+    <!-- Go back to home page -->
+    </form>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form onsubmit="return Accept_response()" method="post" style = "display: inline; margin:0px">
+            <div class=" d-flex justify-content-center mt-4 btn-container">
+                <button id="accept" class="btn text-decoration-none " type="submit" style="background-color:Green;" name="accept">Accept</button>
+            </div>
+        </form>
+
+        <form onsubmit="return Reject_response()" method="post" style = "display: inline ;margin : 0px">
+            <div class=" d-flex justify-content-center mt-4 btn-container">
+                <button id="reject" class="btn text-decoration-none" type="submit" value="123" name="reject">Reject</button>
+            </div>
+        </form>
+    </div>
+<?php
+            } else {
+?>
 </form>
 </div>
-<!-- Go back to home page -->
 <div class=" d-flex justify-content-center mt-4 btn-container">
-    <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
+        <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
+    </div>
+    </form>
+    </div>
+<?php
+            }
+            if (isset($_POST["accept"])) {
+                Set_Details('Dean', "accept", $internship_id, $faculty['Email'], $form['Topic']);
+            }
+            if (isset($_POST["reject"])) {
+                Set_Details('Dean', $_COOKIE["response"], $internship_id, $faculty['Email'], $form['Topic']);
+            }
+
+?>
+
 </div>
 
 
