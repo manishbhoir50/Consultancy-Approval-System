@@ -139,6 +139,22 @@ header {
     background-color: var(--secondary) !important;
 }
 
+.btn-excel {
+    margin-left:10px;
+    background-color:white;
+    border: none;
+}
+
+.btn-excel:hover{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.btn-excel:active{
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: var(--primary);
+}
+
 .college-name {
     flex: 1;
     position: absolute;

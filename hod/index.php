@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
   // query to fetch details of user with given email id and password
   $query = "SELECT * FROM `admin_details` WHERE `Email_id` = '$email_id' AND `password` = '$password' AND `role` = 'hod'";
   $result = mysqli_query($conn, $query);
- // echo mysqli_error($conn);
+  // echo mysqli_error($conn);
 
   // if we found 0 records with given email id and password then pop up will come
   if ($result) {
@@ -98,6 +98,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['start_date'] = "2001-01-01";
       $_SESSION['end_date'] = display_date();
       $_SESSION['status'] = 'all';
+      $_SESSION["role"] = "hod";
       header("location: ./home.php?dept=$dept");
     }
   }

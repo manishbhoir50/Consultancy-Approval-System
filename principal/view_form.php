@@ -206,13 +206,13 @@ $status = $_GET['status'];
     </form>
     </div>
     <div class="d-flex justify-content-center">
-        <form onsubmit="return Accept_response()" method="post" style = "display: inline; margin:0px">
+        <form onsubmit="return Accept_response()" method="post" style="display: inline; margin:0px">
             <div class=" d-flex justify-content-center mt-4 btn-container">
                 <button id="accept" class="btn text-decoration-none " type="submit" style="background-color:Green;" name="accept">Accept</button>
             </div>
         </form>
 
-        <form onsubmit="return Reject_response()" method="post" style = "display: inline ;margin : 0px">
+        <form onsubmit="return Reject_response()" method="post" style="display: inline ;margin : 0px">
             <div class=" d-flex justify-content-center mt-4 btn-container">
                 <button id="reject" class="btn text-decoration-none" type="submit" value="123" name="reject">Reject</button>
             </div>
@@ -221,9 +221,9 @@ $status = $_GET['status'];
 <?php
             } else {
 ?>
-</form>
-</div>
-<div class=" d-flex justify-content-center mt-4 btn-container">
+    </form>
+    </div>
+    <div class=" d-flex justify-content-center mt-4 btn-container">
         <a class="btn text-decoration-none" href="./dept.php">Go back to home page</a>
     </div>
     </form>
@@ -232,6 +232,7 @@ $status = $_GET['status'];
             }
             if (isset($_POST["accept"])) {
                 Set_Details('principal', "accept", $internship_id, $faculty['Email'], $form['Topic']);
+                outward_details($internship_id, $sdrn);
             }
             if (isset($_POST["reject"])) {
                 Set_Details('principal', $_COOKIE["response"], $internship_id, $faculty['Email'], $form['Topic']);

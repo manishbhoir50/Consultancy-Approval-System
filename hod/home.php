@@ -1,6 +1,11 @@
 <?php
 include("../assets/php_modules/connection.php");
 include("../assets/php_modules/common_methods.php");
+
+if (isset($_POST['Excel'])) {
+    header('Location:../assets/php_modules/exporttoexcel.php');
+}
+
 ?>
 
 <!doctype html>
@@ -36,7 +41,7 @@ include("../assets/php_modules/common_methods.php");
 
     <!-- navbar of page -->
     <header id="header">
-        
+
         <!-- header we have already created we are calling header.php file -->
         <?php include('../assets/php_modules/header.php') ?>
 
@@ -44,15 +49,16 @@ include("../assets/php_modules/common_methods.php");
     <!-- success message after login cookie is used to keep track that  user have log in recently but not refreshed page -->
     <?php
 
-
     if (isset($_POST['log-out'])) {
         log_out();
     }
 
     $status = $_SESSION['status'];
+    $_SESSION["current_status"] = $status;
     $is_date_clicked = false;
     $start_date = $_SESSION['start_date'];
     $end_date = $_SESSION['end_date'];
+
     if (isset($_POST['go'])) {
         $start_date = $_SESSION['start_date'] = $_POST["start_date"];
         $end_date = $_SESSION['end_date'] = $_POST["end_date"];
@@ -193,6 +199,11 @@ include("../assets/php_modules/common_methods.php");
             ?>
 
         </div>
+        <form method="post">
+            <div class=" d-flex justify-content-center  flex-wrap">
+                <button class="btn-excel" id="excel" type="submit" name="Excel"><img src="https://img.icons8.com/color/64/000000/ms-excel.png" /></button>
+            </div>
+        </form>
     </main>
 
 

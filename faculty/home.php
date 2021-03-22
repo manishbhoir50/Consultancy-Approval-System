@@ -9,6 +9,7 @@ if (isset($_POST['log-out'])) {
 }
 
 $status = $_SESSION['status'];
+$_SESSION["current_status"] = $status;
 $is_date_clicked = false;
 $start_date = $_SESSION['start_date'];
 $end_date = $_SESSION['end_date']; 
@@ -16,6 +17,9 @@ if(isset($_POST['go'])){
     $start_date = $_SESSION['start_date'] = $_POST["start_date"];
     $end_date = $_SESSION['end_date'] = $_POST["end_date"];
     $is_date_clicked = true;
+}
+if (isset($_POST['Excel'])) {
+    header('Location:../assets/php_modules/exporttoexcel.php');
 }
 ?>
 
@@ -242,6 +246,12 @@ if(isset($_POST['go'])){
             ?>
 
         </div>
+
+        <form method="post">
+            <div class=" d-flex justify-content-center  flex-wrap">
+            <button class="btn-excel" id="excel" type="submit" name="Excel" ><img  src="https://img.icons8.com/color/64/000000/ms-excel.png"/></button>            
+            </div>
+        </form>
     </main>
 
 

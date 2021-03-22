@@ -93,6 +93,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['end_date'] = display_date();
       $_SESSION['status'] = 'all';
       $dept =  $_SESSION['dept'] = $data["Department"];
+      $_SESSION["role"] = "faculty";
       header("location: ./home.php?dept=$dept");
     }
   }

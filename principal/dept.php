@@ -5,6 +5,9 @@ include_once("../assets/php_modules/common_methods.php");
 if (isset($_POST['log-out'])) {
     log_out();
 }
+if (isset($_POST['Excel'])) {
+    header('Location:../assets/php_modules/exporttoexcel.php');
+}
 ?>
 
 <!doctype html>
@@ -45,6 +48,7 @@ if (isset($_POST['log-out'])) {
         <?php
         include_once('../assets/php_modules/header.php');
         $status = $_SESSION['status'];
+        $_SESSION["current_status"] = $status;
         $is_date_clicked = false;
         $start_date = $_SESSION['start_date'];
         $end_date = $_SESSION['end_date'];
@@ -176,6 +180,11 @@ if (isset($_POST['log-out'])) {
             ?>
 
         </div>
+        <form method="post">
+            <div class=" d-flex justify-content-center  flex-wrap">
+                <button class="btn-excel" id="excel" type="submit" name="Excel"><img src="https://img.icons8.com/color/64/000000/ms-excel.png" /></button>
+            </div>
+        </form>
     </main>
 
 
