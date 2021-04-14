@@ -26,7 +26,7 @@
 
 
                             <!-- RAIT Internship -->
-                            <a class="navbar-brand heart-beat-animation" href="#">Consultancy Project Approval</a>
+                            <a class="navbar-brand heart-beat-animation" href="#">Consultancy Project</a>
 
                             <button class="navbar-toggler mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>

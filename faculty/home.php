@@ -18,9 +18,6 @@ if(isset($_POST['go'])){
     $end_date = $_SESSION['end_date'] = $_POST["end_date"];
     $is_date_clicked = true;
 }
-// if (isset($_POST['Excel'])) {
-//     header('Location:../assets/php_modules/exporttoexcel.php');
-// }
 ?>
 
 <!doctype html>
@@ -77,7 +74,7 @@ if(isset($_POST['go'])){
 
 
                                 <!-- RAIT Internship -->
-                                <a class="navbar-brand heart-beat-animation" href="#">Consultancy Project Approval</a>
+                                <a class="navbar-brand heart-beat-animation" href="#">Consultancy Project</a>
 
                                 <button class="navbar-toggler mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
@@ -211,7 +208,7 @@ if(isset($_POST['go'])){
             } else {
             ?>
 
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead class="table-header">
                         <tr>
                             <th>INTERNSHIP ID</th>
@@ -233,7 +230,7 @@ if(isset($_POST['go'])){
                                 ?>
                                 <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>&status=<?php echo $status ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
 
-                                <td><?php echo $data['status'] ?></td>
+                                <td><?php echo ucwords($data['status'])  ?></td>
                                 <td><?php echo $data['Date_submission'] ?></td>
                             </tr>
                         <?php
@@ -247,11 +244,6 @@ if(isset($_POST['go'])){
 
         </div>
 
-        <!-- <form method="post">
-            <div class=" d-flex justify-content-center  flex-wrap">
-            <button class="btn-excel" id="excel" type="submit" name="Excel" ><img  src="https://img.icons8.com/color/64/000000/ms-excel.png"/></button>            
-            </div>
-        </form> -->
         
     </main>
 

@@ -83,7 +83,7 @@ if (isset($_POST['Excel'])) {
                 <input type="date" name="end_date" class="ml-5" value="<?php echo $end_date ?>">
             </div>
             <div class="btn-container mx-auto d-flex justify-content-center" style="margin-top:10px; margin-bottom: 10px">
-                <input type="submit" class="btn" name="go" value="get internships">
+                <input type="submit" class="btn" name="go" value="Get Internships">
             </div>
         </form>
 
@@ -145,7 +145,7 @@ if (isset($_POST['Excel'])) {
             } else {
             ?>
 
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead class="table-header">
                         <tr>
                             <th>INTERNSHIP ID</th>
@@ -167,7 +167,7 @@ if (isset($_POST['Excel'])) {
                                 ?>
                                 <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>&status=<?php echo $status ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
 
-                                <td><?php echo $data['status'] ?></td>
+                                <td><?php echo ucwords($data['status']) ?></td>
                                 <td><?php echo $data['Date_submission'] ?></td>
                             </tr>
                         <?php
