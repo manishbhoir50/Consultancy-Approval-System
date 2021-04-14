@@ -186,8 +186,8 @@ function Set_Details($role, $response, $internship_id, $email, $topic)
                 echo "success";
             else
                 echo  mysqli_error($conn);
-            $body = $topic . ' is approved <br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
-            sendMail($email, $topic . ' is  approved', $body);
+            // $body = $topic . ' is approved <br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
+            // sendMail($email, $topic . ' is  approved', $body);
         ?>
             <script>
                 alert("form is approved")
@@ -266,7 +266,7 @@ function Set_Details($role, $response, $internship_id, $email, $topic)
 }
 
 //function to Print OutwardNo after status Approved
-function outward_details($internship_id, $sdrn)
+function outward_details($internship_id, $sdrn, $email, $topic)
 {
     global $conn;
     $dept = $_SESSION['dept'];
@@ -281,6 +281,11 @@ function outward_details($internship_id, $sdrn)
 
     $querit = "UPDATE `internships` SET `Outward_Number`='$outward' WHERE `internship_id`='$internship_id' AND `Sdrn`='$sdrn'";
     mysqli_query($conn, $querit);
+
+
+    $body = $topic . ' is approved. your outward no is '.$outward.'<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
+    sendMail($email, $topic . ' is  approved', $body);
+    
 }
 
 ?>
