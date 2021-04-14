@@ -65,7 +65,7 @@ include("../assets/php_modules/common_methods.php");
         }
         ?>
 
-        <h1 class="text-center mt-5 add-font">Departments</h1>
+        <h1 class="text-center mt-4 add-font">DEPARTMENT</h1>
         <div class="departments">
             <div class="row justify-content-center">
                 <!-- computer department -->
@@ -74,7 +74,7 @@ include("../assets/php_modules/common_methods.php");
                         <img src="../assets/images/cs.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
-                                <button type="submit" class="btn btn-theme" name="computer">Computer</button>
+                                <button type="submit" class="btn btn-theme" name="computer">COMPUTER</button>
                             </form>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ include("../assets/php_modules/common_methods.php");
                         <img src="../assets/images/it.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
-                                <button type="submit" class="btn btn-theme" name="IT">Information technology</button>
+                                <button type="submit" class="btn btn-theme" name="IT">INFROMATION TECHNOLOGY</button>
                             </form>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ include("../assets/php_modules/common_methods.php");
                         <img src="../assets/images/ertc.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
-                                <button type="submit" class="btn btn-theme" name="electronics">electronics</button>
+                                <button type="submit" class="btn btn-theme" name="electronics">ELECTRONICS</button>
                             </form>
                         </div>
                     </div>
@@ -134,7 +134,7 @@ include("../assets/php_modules/common_methods.php");
                         <img src="../assets/images/instru.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
-                                <button type="submit" class="btn btn-theme" name="instrumentation">instrumentation</button>
+                                <button type="submit" class="btn btn-theme" name="instrumentation">INSTRUMENTATION</button>
                             </form>
                         </div>
                     </div>

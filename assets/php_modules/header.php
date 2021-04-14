@@ -12,7 +12,7 @@
             <img src="../assets/images/logo.jpeg" alt="dy patil logo" id="college-logo">
         </div>
         <div class="college-name add-font">
-            <h1 class="text-center" id="college-name">Ramrao adik institute of technology</h1>
+            <h1 class="text-center" id="college-name">RAMRAO ADIK INSTITUTE OF TECHNOLOGY</h1>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
 
 
                             <!-- RAIT Internship -->
-                            <a class="navbar-brand heart-beat-animation" href="#">RAIT Internship</a>
+                            <a class="navbar-brand heart-beat-animation" href="#">Consultancy Project Approval</a>
 
                             <button class="navbar-toggler mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
                                         <a class="btn btn-light mr-2 hide-me" href="#">Apply</a>
 
                                         <!-- log out button -->
-                                        <button class="btn btn-light" href="#" type="submit" name="log-out">log out</button>
+                                        <button class="btn btn-light" href="#" type="submit" name="log-out">Log out</button>
                                     </div>
 
                                     <!-- profile -->

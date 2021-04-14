@@ -126,7 +126,7 @@ $status = $_GET['status'];
 
 
             <div class="mb-3 no-gutters">
-                <label for="company_name" class="form-label no-gutters"> Comapany Name </label>
+                <label for="company_name" class="form-label no-gutters"> Organisation/Company Name </label>
                 <input type="text" class="form-control" id="company_name" value="<?php echo $form['Company_Name'] ?>" disabled>
             </div>
 

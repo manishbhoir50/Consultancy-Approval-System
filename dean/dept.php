@@ -67,15 +67,15 @@ if (isset($_POST['Excel'])) {
     <main>
 
         <!-- your internship details -->
-        <h1 class="text-center text-uppercase mt-3 add-font">Your Internship details</h1>
+        <h1 class="text-center text-uppercase mt-3 add-font">Consultancy Details</h1>
 
         <!-- flexbox containing buttons all pending approved completed rejected -->
         <form method="POST" class="btn-container d-flex justify-content-center w-100 flex-wrap">
-            <button href="index.html" class="btn  loader" id="all" type="submit" name="all">all</button>
-            <button href="pending.html" class="btn loader" id="pending" type="submit" name="pending">pending</button>
-            <button href="approved.html" class="btn loader" id="approved" type="submit" name="approved">approved</button>
-            <button href="completed.html" class="btn loader" id="completed" type="submit" name="completed">completed</button>
-            <button href="rejected.html" class="btn loader" id="rejected" type="submit" name="rejected">rejected</button>
+            <button href="index.html" class="btn  loader" id="all" type="submit" name="all">All</button>
+            <button href="pending.html" class="btn loader" id="pending" type="submit" name="pending">Pending</button>
+            <button href="approved.html" class="btn loader" id="approved" type="submit" name="approved">Approved</button>
+            <button href="completed.html" class="btn loader" id="completed" type="submit" name="completed">Completed</button>
+            <button href="rejected.html" class="btn loader" id="rejected" type="submit" name="rejected">Rejected</button>
         </form>
 
         <!-- start date and end date -->
@@ -85,7 +85,7 @@ if (isset($_POST['Excel'])) {
                 <input type="date" name="end_date" class="ml-5" value="<?php echo $end_date ?>">
             </div>
             <div class="btn-container mx-auto d-flex justify-content-center" style="margin-top:10px; margin-bottom: 10px">
-                <input type="submit" class="btn" name="go" value="get internships">
+                <input type="submit" class="btn" name="go" value="Get Internships">
             </div>
         </form>
         <!-- table  -->

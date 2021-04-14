@@ -95,11 +95,6 @@
         <input type="text" class="form-control input-required" id="designation" placeholder="Enter your Designation" onchange="remove_error(this)" value="<?php echo $faculty['Desig'] ?>" disabled>
       </div>
 
-      <div class="col-12 mb-3">
-        <label for="inputAddress" class="form-label label-required">Location/Address</label>
-        <input type="text" class="form-control input-required" id="inputAddress" placeholder="Enter your Address" name = "location"  onchange="remove_error(this)">
-      </div>
-
       <!-- topic - this is extra field added -->
       <div class="mb-3">
         <label for="topic" class="form-label label-required"> Topic </label>
@@ -127,6 +122,11 @@
       <div class="mb-3 no-gutters">
         <label for="company_name" class="form-label no-gutters label-required">Organisation/Company Name </label>
         <input type="text" class="form-control input-required" id="company_name" name="company_name" placeholder="Enter Company Name" onchange="remove_error(this)">
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="inputAddress" class="form-label label-required">Location/Address</label>
+        <input type="text" class="form-control input-required" id="inputAddress" placeholder="Enter your Address" name = "location"  onchange="remove_error(this)">
       </div>
 
       <label for="amount" class="form-label label-required">Tentative Amount</label>
@@ -167,6 +167,8 @@
       </div>
     </form>
   </div>
+
+  <br>
 
 
 

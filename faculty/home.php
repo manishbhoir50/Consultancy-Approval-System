@@ -18,9 +18,9 @@ if(isset($_POST['go'])){
     $end_date = $_SESSION['end_date'] = $_POST["end_date"];
     $is_date_clicked = true;
 }
-if (isset($_POST['Excel'])) {
-    header('Location:../assets/php_modules/exporttoexcel.php');
-}
+// if (isset($_POST['Excel'])) {
+//     header('Location:../assets/php_modules/exporttoexcel.php');
+// }
 ?>
 
 <!doctype html>
@@ -63,7 +63,7 @@ if (isset($_POST['Excel'])) {
                 <img src="../assets/images/logo.jpeg" alt="dy patil logo" id="college-logo">
             </div>
             <div class="college-name add-font">
-                <h1 class="text-center" id="college-name">Ramrao adik institute of technology</h1>
+                <h1 class="text-center" id="college-name">RAMRAO ADIK INSTITUTE OF TECHNOLOGY</h1>
             </div>
         </div>
 
@@ -77,7 +77,7 @@ if (isset($_POST['Excel'])) {
 
 
                                 <!-- RAIT Internship -->
-                                <a class="navbar-brand heart-beat-animation" href="#">RAIT Internship</a>
+                                <a class="navbar-brand heart-beat-animation" href="#">Consultancy Project Approval</a>
 
                                 <button class="navbar-toggler mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
@@ -93,7 +93,7 @@ if (isset($_POST['Excel'])) {
                                             <a class="btn btn-light mr-2" href="./apply.php">Apply</a>
 
                                             <!-- log out button -->
-                                            <button class="btn btn-light" href="#" type="submit" name="log-out">log out</button>
+                                            <button class="btn btn-light" href="#" type="submit" name="log-out">Logout</button>
                                         </div>
 
                                         <!-- profile -->
@@ -135,15 +135,15 @@ if (isset($_POST['Excel'])) {
     <main>
 
         <!-- your internship details -->
-        <h1 class="text-center text-uppercase mt-3 add-font">Your Internship details</h1>
+        <h1 class="text-center text-uppercase mt-3 add-font">Consultancy Details</h1>
 
         <!-- flexbox containing buttons all pending approved completed rejected -->
         <form method="POST" class="btn-container d-flex justify-content-center w-100 flex-wrap">
-            <button href="index.html" class="btn  loader" id="all" type="submit" name="all">all</button>
-            <button href="pending.html" class="btn loader" id="pending" type="submit" name="pending">pending</button>
-            <button href="approved.html" class="btn loader" id="approved" type="submit" name="approved">approved</button>
-            <button href="completed.html" class="btn loader" id="completed" type="submit" name="completed">completed</button>
-            <button href="rejected.html" class="btn loader" id="rejected" type="submit" name="rejected">rejected</button>
+            <button href="index.html" class="btn  loader" id="all" type="submit" name="all">All</button>
+            <button href="pending.html" class="btn loader" id="pending" type="submit" name="pending">Pending</button>
+            <button href="approved.html" class="btn loader" id="approved" type="submit" name="approved">Approved</button>
+            <button href="completed.html" class="btn loader" id="completed" type="submit" name="completed">Completed</button>
+            <button href="rejected.html" class="btn loader" id="rejected" type="submit" name="rejected">Rejected</button>
         </form>
 
         <!-- start date and end date -->
@@ -153,7 +153,7 @@ if (isset($_POST['Excel'])) {
               <input type="date" name = "end_date" class = "ml-5" value = "<?php echo $end_date ?>">
               </div>
               <div class="btn-container mx-auto d-flex justify-content-center" style = "margin-top:10px; margin-bottom: 10px">
-                   <input type="submit" class="btn" name = "go" value = "get internships">
+                   <input type="submit" class="btn" name = "go" value = "Get Internships">
               </div>
         </form>
          
@@ -247,11 +247,12 @@ if (isset($_POST['Excel'])) {
 
         </div>
 
-        <form method="post">
+        <!-- <form method="post">
             <div class=" d-flex justify-content-center  flex-wrap">
             <button class="btn-excel" id="excel" type="submit" name="Excel" ><img  src="https://img.icons8.com/color/64/000000/ms-excel.png"/></button>            
             </div>
-        </form>
+        </form> -->
+        
     </main>
 
 
