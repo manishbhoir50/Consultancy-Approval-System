@@ -141,7 +141,7 @@ include("../assets/php_modules/common_methods.php");
                 </div>
             </div>
         </div>
-
+    <br>
     </main>
     <!-- Optional JavaScript; choose one of the two! -->
 
