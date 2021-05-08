@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['end_date'] = display_date();
       $_SESSION['status'] = 'all';
       $_SESSION['first_name'] = 'principal';
-      $_SESSION['role'] = 'principal';
+      $_SESSION['role'] = 'Principle';
       header("location: ./home.php");
     }
   }

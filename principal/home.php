@@ -70,7 +70,7 @@ include("../assets/php_modules/common_methods.php");
             <div class="row justify-content-center">
                 <!-- computer department -->
                 <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
-                    <div class="card mx-auto" style="width: 90%;">
+                    <div class="card mx-auto background-shadow" style="width: 90%;">
                         <img src="../assets/images/cs.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
@@ -83,7 +83,7 @@ include("../assets/php_modules/common_methods.php");
 
                 <!-- IT department -->
                 <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
-                    <div class="card mx-auto" style="width: 90%;">
+                    <div class="card mx-auto background-shadow" style="width: 90%;">
                         <img src="../assets/images/it.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
@@ -96,7 +96,7 @@ include("../assets/php_modules/common_methods.php");
 
                 <!-- electronics department -->
                 <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
-                    <div class="card mx-auto" style="width: 90%;">
+                    <div class="card mx-auto background-shadow" style="width: 90%;">
                         <img src="../assets/images/ertc.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
@@ -115,7 +115,7 @@ include("../assets/php_modules/common_methods.php");
 
                 <!-- extc department -->
                 <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
-                    <div class="card mx-auto" style="width: 90%;">
+                    <div class="card mx-auto background-shadow" style="width: 90%;">
                         <img src="../assets/images/entc.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">
@@ -130,7 +130,7 @@ include("../assets/php_modules/common_methods.php");
 
                 <!-- instrumentation department -->
                 <div class="col-lg-3 col-md-7 col-sm-10 mt-5">
-                    <div class="card mx-auto" style="width: 90%;">
+                    <div class="card mx-auto background-shadow" style="width: 90%;">
                         <img src="../assets/images/instru.jfif" class="card-img-top" alt="...">
                         <div class="card-body">
                             <form action="getDept.php" method="post" class="d-flex justify-content-center btn-container  mt-0 mb-0">

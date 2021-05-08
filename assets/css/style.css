@@ -225,6 +225,14 @@ form.w-100{
     color: white;
 }
 
+/* background shadow effects to cards */
+.background-shadow{
+    transition: box-shadow .3s;
+    border-radius:0.8rem;
+   }
+.background-shadow:hover{
+       box-shadow: 0 0.2rem 1rem rgb(187, 184, 184); 
+  }
 
 
 
