@@ -232,7 +232,7 @@ $status = $_GET['status'];
             }
             if (isset($_POST["accept"])) {
                 Set_Details('principal', "accept", $internship_id, $faculty['Email'], $form['Topic']);
-                outward_details($internship_id, $sdrn);
+                outward_details($internship_id, $sdrn, $faculty['Email'],  $form['Topic']);
             }
             if (isset($_POST["reject"])) {
                 Set_Details('principal', $_COOKIE["response"], $internship_id, $faculty['Email'], $form['Topic']);
