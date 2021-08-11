@@ -8,7 +8,21 @@ $internship_id = $_GET['internship_id'];
 $form = get_form_details($internship_id);
 $sdrn = $form['Sdrn'];
 $faculty = get_faculty_details($sdrn);
-?>
+
+ if(isset($_POST['submit']))
+ {
+   $path1= upload_acceptance($sdrn,$internship_id);
+   $path2= upload_payment($sdrn,$internship_id);
+
+   send_documents($internship_id,$path1,$path2);
+
+ }
+?>                                                                      
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -59,7 +73,7 @@ $faculty = get_faculty_details($sdrn);
         <h3 class="text-center mb-3 add-font validation-msg alert alert-danger add-font" id="error-msg">Please fill all the required fields*</h3>
 
 
-        <form method="post">
+        <form method="post" >
             <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
                 <button type="submit" name="quotation" class="btn text-decoration-none">download quotation letter</button>
             </div>
@@ -111,6 +125,9 @@ $faculty = get_faculty_details($sdrn);
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 -->
+
+
+
 </body>
 
 </html>

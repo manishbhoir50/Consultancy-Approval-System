@@ -25,3 +25,50 @@ function get_faculty_details($sdrn){
     $faculty = mysqli_fetch_assoc($result);
     return $faculty;
 }
+
+function upload_acceptance($sdrn,$internship_id)
+{
+  
+    $dirname = $sdrn;
+    $filename = "../files/" . $dirname . "/" .$internship_id. "/";
+
+    if (!file_exists($filename)) {
+        mkdir($filename, 0777);
+    }
+    $name = $_FILES['acceptance']['name'];
+    $tmp = $_FILES['acceptance']['tmp_name'];
+    $filename = "../files/" . $dirname . "/". $internship_id."/" . $name;
+    move_uploaded_file($tmp, $filename);
+    $filename = "../files/" . $dirname . "/" .$internship_id. "/" . $name; // format to send code to database
+
+    echo $filename;
+
+    return $filename;
+}
+
+function upload_payment($sdrn,$internship_id)
+{ 
+    $dirname = $sdrn;
+    $filename = "../files/" . $dirname . "/" .$internship_id. "/";
+
+    if (!file_exists($filename)) {
+        mkdir($filename, 0777);
+    }
+    $name = $_FILES['payment']['name'];
+    $tmp = $_FILES['payment']['tmp_name'];
+    $filename = "../files/" . $dirname . "/". $internship_id."/" . $name;
+    move_uploaded_file($tmp, $filename);
+    $filename = "../files/" . $dirname . "/" .$internship_id. "/" . $name; // format to send code to database
+
+    return $filename;
+}
+
+function send_documents($internship_id,$path1,$path2){
+    global $conn;
+    $query = "INSERT INTO `documents` VALUES ( '$path1','$path2','$internship_id') ";
+    $result = mysqli_query($conn, $query);
+}
+
+   
+   
+
