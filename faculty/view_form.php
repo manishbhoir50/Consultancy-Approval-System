@@ -9,6 +9,11 @@ $form = get_form_details($internship_id);
 $sdrn = $form['Sdrn'];
 $status = $_GET['status'];
 $faculty = get_faculty_details($sdrn);
+
+if(isset($_POST['quotation'])){
+    header('location:form_download.php?id='.$internship_id);
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -188,24 +193,24 @@ $faculty = get_faculty_details($sdrn);
                 </div>
         </form>
     </div>
-           <?php
+<?php
             }
-           ?>
+?>
 </form>
 </div>
 
 <?php
-    if($status == 'approved'){
-        ?>
-            <div>
-                <form method = "post" class="btn-container d-flex justify-content-center w-100 flex-wrap">
-                    <button name = "quoatation" class = "btn loader">download quotation letter</button>
-                    <button name = "acceptance" class = "btn loader">upload acceptance letter</button>
-                    <button name = "payment" class = "btn loader">upload payment receipt</button>
-                </form>
-            </div>
-        <?php
-    }
+if ($status == 'approved') {
+?>
+    <div>
+        <form method="post" class="btn-container d-flex justify-content-center w-100 flex-wrap">
+            <button name="quotation" type="submit" class="btn loader">Download Quotation Letter</button>
+            <button name="acceptance" type="submit" class="btn loader">Upload Acceptance Letter</button>
+            <button name="payment" type="submit" class="btn loader">Upload Payment Receipt</button>
+        </form>
+    </div>
+<?php
+}
 ?>
 <!-- Go back to home page -->
 <div class=" d-flex justify-content-center mt-4 btn-container">
