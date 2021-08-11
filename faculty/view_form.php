@@ -193,6 +193,20 @@ $faculty = get_faculty_details($sdrn);
            ?>
 </form>
 </div>
+
+<?php
+    if($status == 'approved'){
+        ?>
+            <div>
+                <form method = "post" class="btn-container d-flex justify-content-center w-100 flex-wrap">
+                    <button name = "quoatation" class = "btn loader">download quotation letter</button>
+                    <button name = "acceptance" class = "btn loader">upload acceptance letter</button>
+                    <button name = "payment" class = "btn loader">upload payment receipt</button>
+                </form>
+            </div>
+        <?php
+    }
+?>
 <!-- Go back to home page -->
 <div class=" d-flex justify-content-center mt-4 btn-container">
     <a class="btn text-decoration-none" href="./home.php">Go back to home page</a>
