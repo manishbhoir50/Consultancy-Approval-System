@@ -10,8 +10,8 @@ $sdrn = $form['Sdrn'];
 $status = $_GET['status'];
 $faculty = get_faculty_details($sdrn);
 
-if(isset($_POST['quotation'])){
-    header('location:form_download.php?id='.$internship_id);
+if (isset($_POST['quotation'])) {
+    header('location:form_download.php?id=' . $internship_id);
 }
 
 ?>
@@ -202,13 +202,11 @@ if(isset($_POST['quotation'])){
 <?php
 if ($status == 'approved') {
 ?>
-    <div>
-        <form method="post" class="btn-container d-flex justify-content-center w-100 flex-wrap">
-            <button name="quotation" type="submit" class="btn loader">Download Quotation Letter</button>
-            <button name="acceptance" type="submit" class="btn loader">Upload Acceptance Letter</button>
-            <button name="payment" type="submit" class="btn loader">Upload Payment Receipt</button>
-        </form>
+
+    <div class="btn-container d-flex justify-content-center w-100 flex-wrap">
+        <a href="./next.php?internship_id=<?php echo $internship_id ?>" class="btn loader">Proceed to next step</a>
     </div>
+
 <?php
 }
 ?>
