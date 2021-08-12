@@ -10,10 +10,6 @@ $sdrn = $form['Sdrn'];
 $status = $_GET['status'];
 $faculty = get_faculty_details($sdrn);
 
-if (isset($_POST['quotation'])) {
-    header('location:form_download.php?id=' . $internship_id);
-}
-
 ?>
 <!doctype html>
 <html lang="en">

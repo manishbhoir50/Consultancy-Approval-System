@@ -13,10 +13,13 @@ $faculty = get_faculty_details($sdrn);
  {
    $path1= upload_acceptance($sdrn,$internship_id);
    $path2= upload_payment($sdrn,$internship_id);
-
    send_documents($internship_id,$path1,$path2);
-
  }
+
+ if (isset($_POST['quotation'])) {
+    header('Location:../assets/php_modules/form_download.php?id='.$internship_id);
+}
+
 ?>                                                                      
 
 
@@ -75,7 +78,7 @@ $faculty = get_faculty_details($sdrn);
 
         <form method="post" >
             <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
-                <button type="submit" name="quotation" class="btn text-decoration-none">download quotation letter</button>
+                <button type="submit" name="quotation" class="btn text-decoration-none">Download Quotation Letter</button>
             </div>
         </form>
         <form onsubmit="return validate_me()" method="post" enctype="multipart/form-data">
