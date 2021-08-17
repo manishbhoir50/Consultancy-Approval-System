@@ -132,7 +132,7 @@ $status = $_GET['status'];
 
             <div class="col-12 mb-3">
                 <label for="inputAddress" class="form-label">Location/Address</label>
-                <input type="text" class="form-control" id="inputAddress" value="<?php echo $faculty['Addr'] ?>" disabled>
+                <input type="text" class="form-control" id="inputAddress" value="<?php echo $form['location']?>" disabled>
             </div>
 
             <label for="amount" class="form-label">Tentative Amount</label>

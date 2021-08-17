@@ -127,7 +127,7 @@ $faculty = get_faculty_details($sdrn);
 
             <div class="col-12 mb-3">
                 <label for="inputAddress" class="form-label">Location/Address</label>
-                <input type="text" class="form-control" id="inputAddress" value="<?php echo $faculty['Addr'] ?>" disabled>
+                <input type="text" class="form-control" id="inputAddress" value="<?php echo $form['location'] ?>" disabled>
             </div>
 
             <label for="amount" class="form-label">Tentative Amount</label>
@@ -196,13 +196,22 @@ $faculty = get_faculty_details($sdrn);
 </div>
 
 <?php
-if ($status == 'approved') {
+// Go to Quotation details page
+if ($status == 'approved' && $form['quotation'] == 0) {
 ?>
 
     <div class="btn-container d-flex justify-content-center w-100 flex-wrap">
-        <a href="./next.php?internship_id=<?php echo $internship_id ?>" class="btn loader">Proceed to next step</a>
+        <a href="./quotation_details.php?internship_id=<?php echo $internship_id ?>" class="btn loader">Quotation Details</a>
     </div>
 
+<?php
+}
+// Go to Approval Page 
+elseif ($status == 'approved' && $form['quotation'] == 1) {
+?>
+    <div class="btn-container d-flex justify-content-center w-100 flex-wrap">
+        <a href="./next.php?internship_id=<?php echo $internship_id ?>" class="btn loader">Proceed to next step</a>
+    </div>
 <?php
 }
 ?>

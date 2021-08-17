@@ -283,9 +283,27 @@ function outward_details($internship_id, $sdrn, $email, $topic)
     mysqli_query($conn, $querit);
 
 
-    $body = $topic . ' is approved. your outward no is '.$outward.'<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
+    $body = $topic . ' is approved. your outward no is ' . $outward . '<br>for more details <a href = "localhost/internship-approval-master/faculty">click here</a>';
     sendMail($email, $topic . ' is  approved', $body);
-    
+}
+
+//function to upload quotation details in Internships directory
+function quotation_details($id, $sdrn, $amount, $taxes, $charges, $time)
+{
+    global $conn;
+
+    $query = "UPDATE `internships` SET `development_cost`='$amount',`taxes`='$taxes',`maintenance`='$charges',`delivery_time`='$time',`quotation`=1 WHERE `internship_id`=$id AND `Sdrn`=$sdrn";
+    $result = mysqli_query($conn, $query);
+    if ($result)
+        echo "success";
+    else
+        mysqli_error($conn);
+?>
+    <script>
+        window.location.href = "next.php?internship_id=<?php echo $id ?>"
+    </script>
+
+<?php
 }
 
 ?>

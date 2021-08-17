@@ -12,21 +12,24 @@ $sdrn = $form['Sdrn'];
 $status = 'approved';
 $faculty = get_faculty_details($sdrn);
 $date = $form['Date_submission'];
-$dateit=date_create($date);
+$dateit = date_create($date);
 
 
 ?>
 <html>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
     * {
         border: 1rem;
         margin: 1rem;
         box-sizing: border-box;
     }
-    img{
+
+    img {
         width: 5%;
     }
+
     .center {
         display: flex;
         margin: auto;
@@ -37,7 +40,7 @@ $dateit=date_create($date);
     .right {
         /* display: flex; */
         text-align: right;
-        padding-top: 7rem;
+        padding-top: 5rem;
     }
 
     .class1 {
@@ -48,10 +51,19 @@ $dateit=date_create($date);
         grid-area: g2;
     }
 
-    .grid-container {
+    /* .grid-container {
         display: grid;
         grid-template: 'g1 g2 g2'
-                       'g1 g2 g2';
+            'g1 g2 g2';
+    } */
+    table {
+        display: flex;
+        margin: auto;
+    }
+
+    tr,
+    td {
+        padding: 3px;
     }
 </style>
 
@@ -59,34 +71,64 @@ $dateit=date_create($date);
 
     <!-- <br> <br> <br> <br> -->
     <p class="right">
-        <?php echo htmlentities(date_format($dateit,"dS F, Y") )?>
+        <?php echo htmlentities(date_format($dateit, "dS F, Y")) ?>
     </p> <br> <br>
     To,<br>
     Mr. <br>
     <?php echo htmlentities($form['Company_Name']) ?> <br>
-    <?php echo htmlentities($faculty['Addr']) ?> <br>
+    <?php echo htmlentities($form['location']) ?> <br>
     <br><br>
     <b>Subject:</b> Acceptance of Proposed execution of "
     <?php echo htmlentities($form['Topic']) ?> ".
     <br> <br>
-    Sir,<br> <br>
-    I am grateful to you for considering RAIT as a capable institute to perform this software. I have completely
-    analysed the need for developing a "
-    <?php echo htmlentities($form['Topic']) ?> " software which will help to reduce the workload in
-    the industry.
+    Dear Sir,<br> <br>
+    I am thankful to you for considering Ramrao Adik Institute of Technology as a profession institute for developing a "
+    <?php echo htmlentities($form['Topic']) ?> ". We are competent and can meet your complete project requirements.
+    Please find the quotation for development:
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <td>Project In-Charge</td>
+            <td><?php echo htmlentities($faculty['First_name']) ?> <?php echo htmlentities($faculty['Last_name']) ?></td>
+        </tr>
+        <tr>
+            <td>Description of Project</td>
+            <td><?php echo htmlentities($form['Topic']) ?></td>
+        </tr>
+        <tr>
+            <td>Development Cost</td>
+            <td> ₹<?php echo htmlentities($form['development_cost']) ?> + <?php echo htmlentities($form['taxes']) ?>% Taxes</td>
+        </tr>
+        <tr>
+            <td>Maintenance Charges</td>
+            <td><?php echo htmlentities($form['maintenance']) ?></td>
+        </tr>
+        <tr>
+            <td>Time Delivery</td>
+            <td><?php echo htmlentities($form['delivery_time']) ?></td>
+        </tr>
+    </table>
     <br> <br>
-    I hereby, propose a complete fee of ₹
-    <?php echo htmlentities($form['Tentative_Amount']) ?>/- for the complete execution of the same.
-    <br> <br>
-    Once the software is completed, release the proposed payment at "Principal, RAIT" of ₹
-    <?php echo htmlentities($form['Tentative_Amount']) ?>/-
+
+    As discussed, please send the requirements and release the proposed payment of ₹
+    <?php echo htmlentities($form['development_cost']) ?> + Taxes in cheque payable in "Ramrao Adik Institute of Technology". <br>
+    Or for online Transaction : <br>
+    Mahanagar Cooperative Bank Nerul <br>
+    Bank account No: 017010100000191 <br>
+    IFSC Code: MCBL0960017
+
     <br><br> <br>
 
-    Thanking You <br> <br>
+    Thanking You <br>
     With Warm regards, <br> <br>
-    Dr.Vijay Patil <br>
-    Principal, RAIT. <br>
 
+    Dr.Vijay Patil <br>
+    Principal, <br>
+    Ramrao Adik Institute of Technology <br> <br>
+
+    Ramrao Adik Institute of Technology <br>
+    Nerul, Navi Mumbai- 400706.
 
 </body>
 
@@ -114,14 +156,14 @@ $mpdf->SetHTMLHeader('
     </div>
 ');
 $mpdf->SetHTMLFooter('
-<div style="text-align: center; font-weight: lighter;">
+<div style="text-align: center; font-weight: lighter;font-size: 10px;">
 Dr. D. Y. Patil Vidyanagar, Sector-7, Phase-1, Nerul, Navi Mumbai-400706 | Ph.(+91) 22 27709574/27709505 Fax: (+91) 22 27709573 Website: www.rait.ac.in | E-mail: dypatilrait@rait.ac.in
 </div>
 ');
 $html = ob_get_contents();
-$mpdf->writeHTML($html); 
+$mpdf->writeHTML($html);
 ob_clean();
-$mpdf->output($sdrn."Approval_Form.pdf", 'I');
+$mpdf->output($sdrn . "Approval_Form.pdf", 'I');
 
 
 ?>
