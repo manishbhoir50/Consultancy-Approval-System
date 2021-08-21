@@ -26,6 +26,17 @@ function get_faculty_details($sdrn){
     return $faculty;
 }
 
+function get_document_details($id){
+
+    global $conn; 
+
+    // query to fetch document uploaded details
+    $query = "SELECT * FROM `documents` WHERE `internship_id` = '$id'";
+    $result = mysqli_query($conn, $query);
+    $document = mysqli_fetch_assoc($result);
+    return $document;
+}
+
 function upload_acceptance($sdrn,$internship_id)
 {
   
@@ -40,8 +51,6 @@ function upload_acceptance($sdrn,$internship_id)
     $filename = "../files/" . $dirname . "/". $internship_id."/" . $name;
     move_uploaded_file($tmp, $filename);
     $filename = "../files/" . $dirname . "/" .$internship_id. "/" . $name; // format to send code to database
-
-    echo $filename;
 
     return $filename;
 }
@@ -66,9 +75,9 @@ function upload_payment($sdrn,$internship_id)
 function send_documents($internship_id,$path1,$path2){
     global $conn;
     $query = "INSERT INTO `documents` VALUES ( '$path1','$path2','$internship_id') ";
-    $result = mysqli_query($conn, $query);
+    mysqli_query($conn, $query);
 }
 
-   
+?>
    
 

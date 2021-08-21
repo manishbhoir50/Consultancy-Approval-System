@@ -306,4 +306,16 @@ function quotation_details($id, $sdrn, $amount, $taxes, $charges, $time)
 <?php
 }
 
+function updatefile_upload($id,$sdrn)
+{
+    global $conn;
+   $query = "UPDATE `internships` SET `consultancy_upload`=1 WHERE `internship_id`='$id' AND `Sdrn`='$sdrn'";
+   mysqli_query($conn,$query);
+?>
+<script>
+    window.location.href= "view_uploadform.php?internship_id=<?php echo $id ?>"
+</script>
+<?php
+}
+
 ?>

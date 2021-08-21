@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
             <div class="row">
                 <div class=" mb-3 col-6">
                     <span class="input-group-text"><i class="fas fa-rupee-sign"></i> &nbsp; <b> Amount </b> </span>
-                    <input type="number" class="form-control input-required" id="amount" name="amount" placeholder="Enter Amount in ₹" onchange="remove_error(this)">
+                    <input type="number" class="form-control input-required" id="amount" name="amount" placeholder=<?php echo $form['Tentative_Amount'] ?> onchange="remove_error(this)">
                 </div>
                 <div class=" mb-3 col-6">
                     <span class="input-group-text"><i class="fa fa-percent"></i> &nbsp; <b> Taxes </b></span>

@@ -143,7 +143,7 @@ $faculty = get_faculty_details($sdrn);
             $file = pathinfo($path);
             $basename = $file['basename'];
             ?>
-
+        
             <div class="mb-3">
                 <label for="formFile" class="form-label">Abstract: Uploading Word File Option</label>
                 <a class="form-control text-decoration-none" href="<?php echo $path ?>" target="_blank"><?php echo $basename ?></a>
@@ -206,14 +206,25 @@ if ($status == 'approved' && $form['quotation'] == 0) {
 
 <?php
 }
+
 // Go to Approval Page 
-elseif ($status == 'approved' && $form['quotation'] == 1) {
+elseif ($status == 'approved' && $form['quotation'] == 1 && $form['consultancy_upload'] == 0) {
 ?>
     <div class="btn-container d-flex justify-content-center w-100 flex-wrap">
         <a href="./next.php?internship_id=<?php echo $internship_id ?>" class="btn loader">Proceed to next step</a>
     </div>
 <?php
 }
+
+// View Upload Consultancy Details
+elseif ($status == 'approved' && $form['quotation'] == 1 && $form['consultancy_upload'] == 1) {
+    ?>
+        <div class="btn-container d-flex justify-content-center w-100 flex-wrap">
+            <a href="./view_uploadform.php?internship_id=<?php echo $internship_id ?>" class="btn loader">View Uploaded Details </a>
+        </div>
+    <?php
+    }
+
 ?>
 <!-- Go back to home page -->
 <div class=" d-flex justify-content-center mt-4 btn-container">

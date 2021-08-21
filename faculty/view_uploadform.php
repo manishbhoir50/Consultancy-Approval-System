@@ -2,30 +2,16 @@
 include("../assets/php_modules/common_methods.php");
 include("../assets/php_modules/form_details.php");
 
-
 // internship_id and sdrn are through href you can see them in url 
 $internship_id = $_GET['internship_id'];
+$document = get_document_details($internship_id);
 $form = get_form_details($internship_id);
-$sdrn = $form['Sdrn'];
-$faculty = get_faculty_details($sdrn);
 
- if(isset($_POST['submit']))
- {
-   $path1= upload_acceptance($sdrn,$internship_id);
-   $path2= upload_payment($sdrn,$internship_id);
-   send_documents($internship_id,$path1,$path2);
-   updatefile_upload($internship_id,$sdrn);
- }
-
- if (isset($_POST['quotation'])) {
-    header('Location:../assets/php_modules/form_download.php?id='.$internship_id);
+if (isset($_POST['quotation'])) {
+    header('Location:../assets/php_modules/form_download.php?id=' . $internship_id);
 }
 
-?>                                                                      
-
-
-
-
+?>
 
 <!doctype html>
 <html lang="en">
@@ -73,39 +59,35 @@ $faculty = get_faculty_details($sdrn);
         <!-- external javascript link -->
         <script src="../assets/js/main.js"></script>
 
-        <!-- validation message if all fileds are not filled -->
-        <h3 class="text-center mb-3 add-font validation-msg alert alert-danger add-font" id="error-msg">Please fill all the required fields*</h3>
-
-        <form method="post" >
+        <form method="post">
             <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
                 <button type="submit" name="quotation" class="btn text-decoration-none">Download Quotation Letter</button>
             </div>
         </form>
-        
-        <form onsubmit="return validate_me()" method="post" enctype="multipart/form-data">
-            <?php
 
+        <form method="post" enctype="multipart/form-data">
+
+            <?php
             // to get basename of file
-            $path = $form['Abstract'];
-            $file = pathinfo($path);
-            $basename = $file['basename'];
+            $acceptance = $document['acceptance'];
+            $payment = $document['payment'];
+            $file1 = pathinfo($acceptance);
+            $file2 = pathinfo($payment);
+            $basename1 = $file1['basename'];
+            $basename2 = $file2['basename'];
             ?>
 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Upload Acceptance letter</label>
-                <input class="form-control input-required" type="file" id="formFile" name="acceptance" accept="application/pdf,application/vnd.ms-excel" onchange="remove_error(this)" />
+                <a class="form-control text-decoration-none" href="<?php echo $acceptance ?>" target="_blank"><?php echo $basename1 ?></a>                
                 <small class="text-muted">Note: Only Pdf file is allowed </small>
             </div>
 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Upload Payment receipt</label>
-                <input class="form-control input-required" type="file" id="formFile" name="payment" accept="application/pdf,application/vnd.ms-excel" onchange="remove_error(this)" />
+                <a class="form-control text-decoration-none" href="<?php echo $payment ?>" target="_blank"><?php echo $basename2 ?></a>
                 <small class="text-muted">Note: Only Pdf file is allowed </small>
 
-                <!-- submit button -->
-                <div class=" d-flex justify-content-center mt-4 btn-container">
-                    <button type="submit" name="submit" class="btn text-decoration-none">Submit</button>
-                </div>
             </div>
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2021 at 07:42 AM
+-- Generation Time: Aug 21, 2021 at 10:33 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -45,6 +45,27 @@ INSERT INTO `admin_details` (`username`, `password`, `Email_id`, `phone_no`, `OT
 ('Dean', '1234', 'deanrait@gmail.com', 1234, '123', 'Dean'),
 ('princi', '1234', 'principalrait189@gmail.com', 1234, '123', 'principal'),
 ('shubham', '1234', 'shubhampatil65@gmail.com', 1234, '123', 'hod');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `acceptance` varchar(255) NOT NULL,
+  `payment` varchar(255) NOT NULL,
+  `internship_id` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`acceptance`, `payment`, `internship_id`) VALUES
+('../files/400/1/Untitled document.pdf', '../files/400/1/Untitled document.pdf', 1),
+('../files/401/5/Most popular spoken english words.pdf', '../files/401/5/Most popular spoken english words.pdf', 5),
+('../files/401/19/ChetanKhairnar_InternshalaResume.pdf', '../files/401/19/ChetanKhairnar_InternshalaResume.pdf', 19);
 
 -- --------------------------------------------------------
 
@@ -219,37 +240,62 @@ CREATE TABLE `internships` (
   `Rejection_Reason` varchar(255) NOT NULL,
   `status` varchar(30) DEFAULT NULL,
   `Outward_Number` varchar(70) DEFAULT NULL,
-  `quotation` tinyint(1) NOT NULL DEFAULT 0
+  `quotation` tinyint(1) NOT NULL DEFAULT 0,
+  `consultancy_upload` tinyint(1) DEFAULT 0,
+  `ongoing` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `internships`
 --
 
-INSERT INTO `internships` (`internship_id`, `Sdrn`, `location`, `Topic`, `Consultancy_Type`, `Company_Name`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_submission`, `development_cost`, `taxes`, `maintenance`, `delivery_time`, `HOD_Approval`, `DC_Approval`, `Principal_Approval`, `Rejection_Reason`, `status`, `Outward_Number`, `quotation`) VALUES
-(1, '400', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2020-01-01', 'no required', '2001-01-01', 900, 0, 'zero charges for one year', '1 month', 1, 1, 1, '', 'approved', NULL, 1),
-(2, '400', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/09', 0),
-(3, '400', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(4, '400', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', NULL, 0),
-(5, '401', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', 1200, 5, 'zero charges for three year', '5 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/10', 1),
-(6, '401', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 0, 0, '', 'approved by hod', NULL, 0),
-(7, '401', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/05', 0),
-(8, '401', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'vedit', 0),
-(9, '402', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(10, '402', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(11, '402', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(12, '402', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(13, '403', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/IT/SDG-RAIT/2021-22/01', 0),
-(14, '403', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(15, '403', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2020-03-23', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(16, '403', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2020-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(17, '401', 'Nerul', 'machine learning new project', 'I', 'RAIT', 122, '../files/401/Form.pdf', 11, '2020-12-31', '2021-03-11', 'html', '2021-03-21', 10000, 12, 'zero charges for one year', 'one month', 1, 1, 1, '', 'approved', '4', 1),
-(18, '401', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'Android Developmemt', 'I', 'Apple', 122, '../files/401/Form.pdf', 2, '2021-03-09', '2021-03-31', 'html', '2021-03-22', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/06', 0),
-(19, '401', 'abcf', 'Internship Ml', 'I', 'RAIT', 10000, '../files/401/Form.pdf', 2, '2021-03-16', '2021-03-31', 'html', '2021-03-22', 900, 18, 'zero charges for one year', '3 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/07', 1),
-(20, '400', 'nerul, Navi Mumbai', 'Stock Prediction using ML', 'I', 'RAIT', 10000, '../files/400/2021 Scholarship form.pdf', 4, '2021-04-06', '2021-05-06', 'sql,html', '2021-04-14', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/08', 0),
-(21, '401', 'h201, Airoli,Navi Mumbai', 'E-locker document management', 'O', 'RAIT', 1000, '../files/401/Experiment 1(DWM).pdf', 2, '2021-04-08', '2021-04-29', 'html', '2021-04-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(22, '401', 'Seattle', 'Inventory Management System', 'I', 'Apple', 1000, '../files/401/Most popular spoken english words.pdf', 9, '2021-06-09', '2021-09-23', 'sql,html', '2021-08-16', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0),
-(23, '401', 'Korea', 'Github', 'I', 'Samsung', 19000, '../files/401/Most popular spoken english words.pdf', 3, '2021-07-08', '2021-08-27', 'sql,html', '2021-08-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0);
+INSERT INTO `internships` (`internship_id`, `Sdrn`, `location`, `Topic`, `Consultancy_Type`, `Company_Name`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_submission`, `development_cost`, `taxes`, `maintenance`, `delivery_time`, `HOD_Approval`, `DC_Approval`, `Principal_Approval`, `Rejection_Reason`, `status`, `Outward_Number`, `quotation`, `consultancy_upload`, `ongoing`) VALUES
+(1, '400', 'Nerul', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2020-01-01', 'no required', '2001-01-01', 900, 0, 'zero charges for one year', '1 month', 1, 1, 1, '', 'approved', NULL, 1, 1, 0),
+(2, '400', 'Thane', 'MU RRC system', 'O', 'Microsoft Organization', 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/09', 0, 0, 0),
+(3, '400', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(4, '400', '', 'Fake news', 'O', 'Rait', 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', NULL, 0, 0, 0),
+(5, '401', 'Thane', 'RAIT authentication system', 'I', 'Samsung', 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', 1200, 5, 'zero charges for three year', '5 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/10', 1, 1, 0),
+(6, '401', 'Amravati', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 0, 0, '', 'approved by hod', NULL, 0, 0, 0),
+(7, '401', 'Thane', 'Internship Approval', 'I', 'Samsung', 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/05', 0, 0, 0),
+(8, '401', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'vedit', 0, 0, 0),
+(9, '402', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(10, '402', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(11, '402', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(12, '402', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(13, '403', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/IT/SDG-RAIT/2021-22/01', 0, 0, 0),
+(14, '403', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(15, '403', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2020-03-23', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(16, '403', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2020-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(17, '401', 'Nerul', 'machine learning new project', 'I', 'RAIT', 122, '../files/401/Form.pdf', 11, '2020-12-31', '2021-03-11', 'html', '2021-03-21', 10000, 12, 'zero charges for one year', 'one month', 1, 1, 1, '', 'approved', '4', 1, 0, 0),
+(18, '401', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'Android Developmemt', 'I', 'Apple', 122, '../files/401/Form.pdf', 2, '2021-03-09', '2021-03-31', 'html', '2021-03-22', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/06', 0, 0, 0),
+(19, '401', 'abcf', 'Internship Ml', 'I', 'RAIT', 10000, '../files/401/Form.pdf', 2, '2021-03-16', '2021-03-31', 'html', '2021-03-22', 900, 18, 'zero charges for one year', '3 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/07', 1, 1, 0),
+(20, '400', 'nerul, Navi Mumbai', 'Stock Prediction using ML', 'I', 'RAIT', 10000, '../files/400/2021 Scholarship form.pdf', 4, '2021-04-06', '2021-05-06', 'sql,html', '2021-04-14', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/08', 0, 0, 0),
+(21, '401', 'h201, Airoli,Navi Mumbai', 'E-locker document management', 'O', 'RAIT', 1000, '../files/401/Experiment 1(DWM).pdf', 2, '2021-04-08', '2021-04-29', 'html', '2021-04-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(22, '401', 'Seattle', 'Inventory Management System', 'I', 'Apple', 1000, '../files/401/Most popular spoken english words.pdf', 9, '2021-06-09', '2021-09-23', 'sql,html', '2021-08-16', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
+(23, '401', 'Korea', 'Github', 'I', 'Samsung', 19000, '../files/401/Most popular spoken english words.pdf', 3, '2021-07-08', '2021-08-27', 'sql,html', '2021-08-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verifier`
+--
+
+CREATE TABLE `verifier` (
+  `Username` varchar(20) NOT NULL,
+  `Password` varchar(20) NOT NULL,
+  `Email_id` varchar(50) NOT NULL,
+  `Phone_no` bigint(12) NOT NULL,
+  `OTP` varchar(50) DEFAULT NULL,
+  `Department` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `verifier`
+--
+
+INSERT INTO `verifier` (`Username`, `Password`, `Email_id`, `Phone_no`, `OTP`, `Department`) VALUES
+('compverifier', '1234', 'compverify@gmail.com', 1234, '34', 'computer'),
+('Itverifier', '1234', 'itverify@gmail.com', 1234, '2', 'IT');
 
 --
 -- Indexes for dumped tables
@@ -260,6 +306,12 @@ INSERT INTO `internships` (`internship_id`, `Sdrn`, `location`, `Topic`, `Consul
 --
 ALTER TABLE `admin_details`
   ADD PRIMARY KEY (`Email_id`);
+
+--
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
+  ADD UNIQUE KEY `internship_id` (`internship_id`);
 
 --
 -- Indexes for table `faculty`
@@ -280,6 +332,12 @@ ALTER TABLE `hod`
 ALTER TABLE `internships`
   ADD PRIMARY KEY (`internship_id`),
   ADD KEY `form_fk1` (`Sdrn`);
+
+--
+-- Indexes for table `verifier`
+--
+ALTER TABLE `verifier`
+  ADD PRIMARY KEY (`Email_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
