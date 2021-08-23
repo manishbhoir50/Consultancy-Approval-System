@@ -57,12 +57,6 @@ if (isset($_POST['Excel'])) {
     $start_date = $_SESSION['start_date'];
     $end_date = $_SESSION['end_date'];
 
-    if (isset($_POST['go'])) {
-        $start_date = $_SESSION['start_date'] = $_POST["start_date"];
-        $end_date = $_SESSION['end_date'] = $_POST["end_date"];
-        $is_date_clicked = true;
-    }
-
 
     if ($_SESSION['log_in']) {
     ?>
@@ -103,49 +97,20 @@ if (isset($_POST['Excel'])) {
         <div class="table-container mx-auto mt-3" id="table">
             <?php
             $dept = $_SESSION["dept"];
-            if (isset($_POST['pending']) || ($is_date_clicked && $status == "pending")) {
-            ?>
-                <script>
-                    clear_table(document.getElementById('pending'));
-                </script>
-            <?php
-                $_SESSION['status'] = "pending";
-                $result = load_details('pending', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
-            } else if (isset($_POST['approved']) || ($is_date_clicked && $status == "approved")) {
-            ?>
-                <script>
-                    clear_table(document.getElementById('approved'));
-                </script>
-            <?php
-                $_SESSION['status'] = "approved";
-                $result = load_details('approved', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
-            } else if (isset($_POST['completed']) || ($is_date_clicked && $status == "completed")) {
-            ?>
-                <script>
-                    clear_table(document.getElementById('completed'));
-                </script>
-            <?php
-                $_SESSION['status'] = "completed";
-                $result = load_details('completed', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
-            } else if (isset($_POST['rejected']) || ($is_date_clicked && $status == "rejected")) {
-            ?>
-                <script>
-                    clear_table(document.getElementById('rejected'));
-                </script>
-            <?php
-                $_SESSION['status'] = "rejected";
-                $result = load_details('rejected', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
-            } else {
-            ?>
-                <script>
-                    clear_table(document.getElementById('all'));
-                </script>
-            <?php
-                $_SESSION['status'] = "all";
-                $result = load_details('all', 'hod', $_SESSION['sdrn'], $dept, $start_date, $end_date);
-            }
-            $is_date_clicked = false;
             
+            $query = "SELECT * FROM `internships` NATURAL JOIN `faculty` WHERE `status`= 'approved' AND `consultancy_upload`='1' AND `DEPARTMENT` = '$dept' AND `ongoing`='0' ORDER BY `Date_submission` DESC, `internship_id` DESC ";
+            
+            if (isset($_POST['go'])) {
+                $start_date = $_SESSION['start_date'] = $_POST["start_date"];
+                $end_date = $_SESSION['end_date'] = $_POST["end_date"];
+                $is_date_clicked = true;
+
+                $query = "SELECT * FROM `internships` NATURAL JOIN `faculty` WHERE `status`= 'approved' AND `consultancy_upload`='1' AND `DEPARTMENT` = '$dept' AND `ongoing`='0' AND `Date_submission` >= '$start_date' AND `Date_submission` <= '$end_date' ORDER BY `Date_submission` DESC, `internship_id` DESC ";
+
+            }
+            
+            $result = mysqli_query($conn,$query);
+
             // if no internship found then message will be displayed otherwise details whatever we found will be displayed
             if (mysqli_num_rows($result) == 0) {
             ?>
@@ -159,7 +124,6 @@ if (isset($_POST['Excel'])) {
                         <tr>
                             <th>INTERNSHIP ID</th>
                             <th>TOPIC</th>
-                            <th>STATUS</th>
                             <th>DATE</th>
                         </tr>
                     </thead>
@@ -174,9 +138,8 @@ if (isset($_POST['Excel'])) {
                                 <?php
                                 $status = str_replace(' ', '', $data['status']);
                                 ?>
-                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>&status=<?php echo $status ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
+                                <td><a href="view_form.php?internship_id=<?php echo $data['internship_id'] ?>" class="text-decoration-none text-dark"><?php echo $data['Topic'] ?><a href="#"></td>
 
-                                <td><?php echo ucwords($data['status'])?></td>
                                 <td><?php echo $data['Date_submission'] ?></td>
                             </tr>
                         <?php
@@ -189,11 +152,7 @@ if (isset($_POST['Excel'])) {
             ?>
 
         </div>
-        <form method="post">
-            <div class=" d-flex justify-content-center  flex-wrap">
-                <button class="btn-excel" id="excel" type="submit" name="Excel"><img src="https://img.icons8.com/color/64/000000/ms-excel.png" /></button>
-            </div>
-        </form>
+
     </main>
 
 

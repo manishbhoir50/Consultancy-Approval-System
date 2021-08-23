@@ -3,7 +3,6 @@
 // function for viewing form
 function get_form_details($internship_id){
 
-
     include("../assets/php_modules/connection.php");
 
     global $conn;
@@ -41,9 +40,15 @@ function upload_acceptance($sdrn,$internship_id)
 {
   
     $dirname = $sdrn;
-    $filename = "../files/" . $dirname . "/" .$internship_id. "/";
+    $filename = "../files/" . $dirname . "/" ;
 
     if (!file_exists($filename)) {
+
+        mkdir($filename, 0777);
+    }
+    $filename = "../files/" . $dirname . "/" .$internship_id. "/";
+    if (!file_exists($filename)) {
+
         mkdir($filename, 0777);
     }
     $name = $_FILES['acceptance']['name'];
@@ -52,15 +57,23 @@ function upload_acceptance($sdrn,$internship_id)
     move_uploaded_file($tmp, $filename);
     $filename = "../files/" . $dirname . "/" .$internship_id. "/" . $name; // format to send code to database
 
+    // echo $filename;
+
     return $filename;
 }
 
 function upload_payment($sdrn,$internship_id)
 { 
     $dirname = $sdrn;
-    $filename = "../files/" . $dirname . "/" .$internship_id. "/";
+    $filename = "../files/" . $dirname . "/" ;
 
     if (!file_exists($filename)) {
+
+        mkdir($filename, 0777);
+    }
+    $filename = "../files/" . $dirname . "/" .$internship_id. "/";
+    if (!file_exists($filename)) {
+
         mkdir($filename, 0777);
     }
     $name = $_FILES['payment']['name'];
@@ -79,5 +92,4 @@ function send_documents($internship_id,$path1,$path2){
 }
 
 ?>
-   
 

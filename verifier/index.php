@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
       $dept = $data['Department'];
       $_SESSION['dept'] = $dept;
       $_SESSION['first_name'] = 'Verifier';
-      $_SESSION["role"] = "verifier";
+      // $_SESSION["role"] = "verifier";
       header("location: ./home.php?dept=$dept");
     }
   }

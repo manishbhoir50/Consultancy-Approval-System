@@ -78,18 +78,19 @@ if (isset($_POST['quotation'])) {
             ?>
 
             <div class="mb-3">
-                <label for="formFile" class="form-label">Upload Acceptance letter</label>
+                <label for="formFile" class="form-label"> Acceptance letter</label>
                 <a class="form-control text-decoration-none" href="<?php echo $acceptance ?>" target="_blank"><?php echo $basename1 ?></a>                
                 <small class="text-muted">Note: Only Pdf file is allowed </small>
             </div>
 
             <div class="mb-3">
-                <label for="formFile" class="form-label">Upload Payment receipt</label>
+                <label for="formFile" class="form-label"> Payment receipt</label>
                 <a class="form-control text-decoration-none" href="<?php echo $payment ?>" target="_blank"><?php echo $basename2 ?></a>
                 <small class="text-muted">Note: Only Pdf file is allowed </small>
 
             </div>
 
+            
 
         </form>
     </div>
