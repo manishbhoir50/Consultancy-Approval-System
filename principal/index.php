@@ -26,7 +26,7 @@
     <form method="POST">
       <div class="input-group flex-nowrap w-80 mx-auto mb-3">
         <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="email id" aria-label="Username" aria-describedby="addon-wrapping" name="email_id" value="<?php if (isset($email_id)) echo $email_id ?>">
+        <input type="text" class="form-control" placeholder="username" aria-label="Username" aria-describedby="addon-wrapping" name="username" value="<?php if (isset($username)) echo $username ?>">
       </div>
       <div class="input-group flex-nowrap w-80 mx-auto mb-3">
         <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key"></i></span>
@@ -68,12 +68,12 @@ if (isset($_POST['submit'])) {
 
   //session is started
   session_start();
-  $email_id = $_POST['email_id'];
+  $username = $_POST['username'];
   $password = $_POST['password'];
   $_SESSION['log_in'] = 1;
 
   // query to fetch details of user with given email id and password
-  $query = "SELECT * FROM `admin_details` WHERE `Email_id` = '$email_id' AND `password` = '$password' AND `role` = 'principal'";
+  $query = "SELECT * FROM `admin_details` WHERE `username` = '$username' AND `password` = '$password' AND `role` = 'principal'";
   $result = mysqli_query($conn, $query);
   // echo mysqli_error($conn);
 
@@ -82,18 +82,10 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) == 0) {
 ?>
       <script>
-        alert("Wrong email id or password");
+        alert("Wrong username or password");
       </script>
 <?php
     } else {
-      /* $query = "SELECT * FROM `faculty` WHERE `Email` = '$email_id' AND `Password` = '$password'";
-      $result = mysqli_query($conn, $query);
-      $data = mysqli_fetch_assoc($result);
-      $sdrn = $data["Sdrn"];
-      $dept = $data['Department'];
-      $_SESSION['dept'] = $dept;
-      $_SESSION['sdrn'] = $sdrn;
-      $_SESSION['email_id'] = $email_id;*/
       $_SESSION['start_date'] = "2001-01-01";
       $_SESSION['end_date'] = display_date();
       $_SESSION['status'] = 'all';

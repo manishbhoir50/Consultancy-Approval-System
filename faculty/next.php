@@ -1,6 +1,7 @@
 <?php
 include("../assets/php_modules/common_methods.php");
 include("../assets/php_modules/form_details.php");
+include_once("../assets/send_mail.php");
 
 
 // internship_id and sdrn are through href you can see them in url 
@@ -13,13 +14,9 @@ $faculty = get_faculty_details($sdrn);
  {
    $path1= upload_acceptance($sdrn,$internship_id);
    $path2= upload_payment($sdrn,$internship_id);
-   send_documents($internship_id,$path1,$path2);
+   send_documents($internship_id, $path1, $path2, $faculty['Department'], $form['Topic']);
    updatefile_upload($internship_id,$sdrn);
  }
-
- if (isset($_POST['quotation'])) {
-    header('Location:../assets/php_modules/form_download.php?id='.$internship_id);
-}
 
 ?>                                                                      
 
@@ -78,7 +75,7 @@ $faculty = get_faculty_details($sdrn);
 
         <form method="post" >
             <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
-                <button type="submit" name="quotation" class="btn text-decoration-none">Download Quotation Letter</button>
+                <a  href = "../assets/php_modules/form_download.php?id=<?php echo $internship_id ?>" class="btn text-decoration-none" target = "_blank">Download Quotation Letter</a>
             </div>
         </form>
         

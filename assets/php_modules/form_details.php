@@ -30,7 +30,7 @@ function get_document_details($id){
     global $conn; 
 
     // query to fetch document uploaded details
-    $query = "SELECT * FROM `documents` WHERE `internship_id` = '$id'";
+    $query = "SELECT * FROM `documents` WHERE `internship_id` = '$id' AND `rejected` = '0'";
     $result = mysqli_query($conn, $query);
     $document = mysqli_fetch_assoc($result);
     return $document;
@@ -85,10 +85,18 @@ function upload_payment($sdrn,$internship_id)
     return $filename;
 }
 
-function send_documents($internship_id,$path1,$path2){
+function send_documents($internship_id, $path1, $path2, $department, $sdrn){
     global $conn;
-    $query = "INSERT INTO `documents` VALUES ( '$path1','$path2','$internship_id') ";
+    $query = "INSERT INTO `documents` VALUES ( '$path1','$path2','$internship_id', '0', '') ";
     mysqli_query($conn, $query);
+
+
+    $query = "SELECT `Email_id` FROM `verifier` WHERE `Department` = '$department'";
+    $data = mysqli_query($conn, $query);
+    $email = mysqli_fetch_array($data)['Email_id'];
+    $topic = $sdrn. " has sent for approval";
+    $body =  $sdrn . ' has sent internship for approval <br> for more details check here <a href = "localhost/internship-approval-master/verifier"> click here </a>';
+    sendMail($email, $topic, $body);
 }
 
 ?>

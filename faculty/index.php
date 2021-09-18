@@ -26,7 +26,7 @@
     <form method="POST">
       <div class="input-group flex-nowrap w-80 mx-auto mb-3">
         <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="email id" aria-label="Username" aria-describedby="addon-wrapping" name="email_id" value="<?php if (isset($email_id)) echo $email_id ?>">
+        <input type="text" class="form-control" placeholder="sdrn" aria-label="Username" aria-describedby="addon-wrapping" name="sdrn" value="<?php if (isset($sdrn)) echo $sdrn ?>">
       </div>
       <div class="input-group flex-nowrap w-80 mx-auto mb-3">
         <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key"></i></span>
@@ -67,12 +67,12 @@ if (isset($_POST['submit'])) {
 
   //session is started 
   session_start();
-  $email_id = $_POST['email_id'];
+  $sdrn = $_POST['sdrn'];
   $password = $_POST['password'];
   $_SESSION['log_in'] = 1;
 
   // query to fetch details of user with given email id and password
-  $query = "SELECT * FROM `faculty` WHERE `Email` = '$email_id' AND `Password` = '$password'";
+  $query = "SELECT * FROM `faculty` WHERE `Sdrn` = '$sdrn' AND `Password` = '$password'";
   $result = mysqli_query($conn, $query);
 
   // if we found 0 records with given email id and password then pop up will come
@@ -80,14 +80,14 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) == 0) {
 ?>
       <script>
-        alert("Wrong email id or password");
+        alert("Wrong Sdrn id or password");
       </script>
 <?php
     } else {
       $data = mysqli_fetch_assoc($result);
       $sdrn = $data["Sdrn"];
       $_SESSION["first_name"] = $data["First_name"];
-      $_SESSION['email_id'] = $email_id;
+      $_SESSION['email_id'] = $data["Email_id"];
       $_SESSION['sdrn'] = $sdrn;
       $_SESSION['start_date'] = "2001-01-01";
       $_SESSION['end_date'] = display_date();

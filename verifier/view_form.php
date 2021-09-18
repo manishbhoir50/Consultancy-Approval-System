@@ -29,17 +29,21 @@ if(isset($_POST['reject'])){
     $query = "UPDATE `internships` SET `consultancy_upload`='0' WHERE `internship_id`='$internship_id'";
     mysqli_query($conn,$query);
 
-    $query = "SELECT * FROM `documents` WHERE `internship_id`='$internship_id'";
-    $data = mysqli_query($conn,$query);
-    $result = mysqli_fetch_assoc($data);
-    $filename1 = $result['acceptance'];   
-    $filename2 = $result['payment'];   
-    $dirname = dirname($filename1);   
-    unlink($filename1);
-    unlink($filename2);
-    rmdir($dirname );
+    // $query = "SELECT * FROM `documents` WHERE `internship_id`='$internship_id'";
+    // $data = mysqli_query($conn,$query);
+    // $result = mysqli_fetch_assoc($data);
+    // $filename1 = $result['acceptance'];   
+    // $filename2 = $result['payment'];   
+    // $dirname = dirname($filename1);   
+    // unlink($filename1);
+    // unlink($filename2);
+    // rmdir($dirname );
 
-    $query = "DELETE FROM `documents` WHERE `internship_id`='$internship_id'";
+    // $query = "DELETE FROM `documents` WHERE `internship_id`='$internship_id'";
+    // mysqli_query($conn,$query);
+
+    $response = $_COOKIE["response"];
+    $query = "UPDATE `documents` SET `rejected`='1', `rejection_reason` = '$response' WHERE `internship_id`='$internship_id'";
     mysqli_query($conn,$query);
 
     $query= "SELECT `Email` FROM `faculty` WHERE `Sdrn` = (SELECT `Sdrn` FROM `internships` WHERE `internship_id`= '$internship_id' )";
@@ -269,7 +273,7 @@ if(isset($_POST['reject'])){
 
             <form method="post">
                 <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
-                    <a href="../assets/php_modules/form_download.php?id=<?php echo $internship_id ?>" class="btn text-decoration-none">Download Quotation Letter</a>
+                    <a href="../assets/php_modules/form_download.php?id=<?php echo $internship_id ?>" class="btn text-decoration-none" target = "_blank">Download Quotation Letter</a>
                 </div>
             </form>
 
