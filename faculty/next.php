@@ -73,11 +73,6 @@ $faculty = get_faculty_details($sdrn);
         <!-- validation message if all fileds are not filled -->
         <h3 class="text-center mb-3 add-font validation-msg alert alert-danger add-font" id="error-msg">Please fill all the required fields*</h3>
 
-        <form method="post" >
-            <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
-                <a  href = "../assets/php_modules/form_download.php?id=<?php echo $internship_id ?>" class="btn text-decoration-none" target = "_blank">Download Quotation Letter</a>
-            </div>
-        </form>
         
         <form onsubmit="return validate_me()" method="post" enctype="multipart/form-data">
             <?php

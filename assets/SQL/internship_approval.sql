@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2021 at 10:08 AM
+-- Generation Time: Sep 24, 2021 at 09:38 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -73,7 +73,8 @@ INSERT INTO `documents` (`acceptance`, `payment`, `internship_id`, `rejected`, `
 ('../files/400/2/papa_vaccine.pdf', '../files/400/2/0209_BDA_18CE1009_ShivamKendre.pdf', 2, 0, ''),
 ('../files/400/4/30-08_DSIP_18CE1009_ShivamKendre.pdf', '../files/400/4/0109_AISC_18CE1009_ShivamKendre.pdf', 4, 1, 'not applicable topic'),
 ('../files/400/4/my_resume.pdf', '../files/400/4/resume_recent.pdf', 4, 0, ''),
-('../files/400/25/my_resume-compressed.pdf', '../files/400/25/12237540_Shivam_kendre_19368848_202109071119_Resume.pdf', 25, 0, '');
+('../files/400/25/my_resume-compressed.pdf', '../files/400/25/12237540_Shivam_kendre_19368848_202109071119_Resume.pdf', 25, 0, ''),
+('../files/400/26/GENC TEST RESULTS.pdf', '../files/400/26/0109_AISC_18CE1009_ShivamKendre.pdf', 26, 0, '');
 
 -- --------------------------------------------------------
 
@@ -250,40 +251,41 @@ CREATE TABLE `internships` (
   `Outward_Number` varchar(70) DEFAULT NULL,
   `quotation` tinyint(1) NOT NULL DEFAULT 0,
   `consultancy_upload` tinyint(1) DEFAULT 0,
-  `ongoing` tinyint(1) NOT NULL DEFAULT 0
+  `ongoing` tinyint(1) NOT NULL DEFAULT 0,
+  `client_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `internships`
 --
 
-INSERT INTO `internships` (`internship_id`, `Sdrn`, `location`, `Topic`, `Consultancy_Type`, `Company_Name`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_submission`, `development_cost`, `taxes`, `maintenance`, `delivery_time`, `HOD_Approval`, `DC_Approval`, `Principal_Approval`, `Rejection_Reason`, `status`, `Outward_Number`, `quotation`, `consultancy_upload`, `ongoing`) VALUES
-(1, '400', 'Nerul', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2020-01-01', 'no required', '2001-01-01', 900, 0, 'zero charges for one year', '1 month', 1, 1, 1, '', 'completed', NULL, 1, 1, 1),
-(2, '400', 'Thane', 'MU RRC system', 'O', 'Microsoft Organization', 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', 5000, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/09', 1, 1, 1),
-(3, '400', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(4, '400', '', 'Fake news', 'O', 'Rait', 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', 500, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', NULL, 1, 1, 1),
-(5, '401', 'Thane', 'RAIT authentication system', 'I', 'Samsung', 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', 1200, 5, 'zero charges for three year', '5 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/10', 1, 1, 0),
-(6, '401', 'Amravati', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 0, 0, '', 'approved by hod', NULL, 0, 0, 0),
-(7, '401', 'Thane', 'Internship Approval', 'I', 'Samsung', 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/05', 0, 0, 0),
-(8, '401', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'vedit', 0, 0, 0),
-(9, '402', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(10, '402', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(11, '402', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(12, '402', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(13, '403', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/IT/SDG-RAIT/2021-22/01', 0, 0, 0),
-(14, '403', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(15, '403', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2020-03-23', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(16, '403', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2020-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(17, '401', 'Nerul', 'machine learning new project', 'I', 'RAIT', 122, '../files/401/Form.pdf', 11, '2020-12-31', '2021-03-11', 'html', '2021-03-21', 10000, 12, 'zero charges for one year', 'one month', 1, 1, 1, '', 'approved', '4', 1, 0, 0),
-(18, '401', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'Android Developmemt', 'I', 'Apple', 122, '../files/401/Form.pdf', 2, '2021-03-09', '2021-03-31', 'html', '2021-03-22', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/06', 0, 0, 0),
-(19, '401', 'abcf', 'Internship Ml', 'I', 'RAIT', 10000, '../files/401/Form.pdf', 2, '2021-03-16', '2021-03-31', 'html', '2021-03-22', 900, 18, 'zero charges for one year', '3 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/07', 1, 1, 0),
-(20, '400', 'nerul, Navi Mumbai', 'Stock Prediction using ML', 'I', 'RAIT', 10000, '../files/400/2021 Scholarship form.pdf', 4, '2021-04-06', '2021-05-06', 'sql,html', '2021-04-14', 10000, 56, '5456464654', '89888987987', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/08', 1, 1, 1),
-(21, '401', 'h201, Airoli,Navi Mumbai', 'E-locker document management', 'O', 'RAIT', 1000, '../files/401/Experiment 1(DWM).pdf', 2, '2021-04-08', '2021-04-29', 'html', '2021-04-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(22, '401', 'Seattle', 'Inventory Management System', 'I', 'Apple', 1000, '../files/401/Most popular spoken english words.pdf', 9, '2021-06-09', '2021-09-23', 'sql,html', '2021-08-16', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(23, '401', 'Korea', 'Github', 'I', 'Samsung', 19000, '../files/401/Most popular spoken english words.pdf', 3, '2021-07-08', '2021-08-27', 'sql,html', '2021-08-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0),
-(24, '400', 'LIG 1st room no D42 sec3, kalamboli', 'AIR BUS', 'O', 'Fresher', 5000, '../files/400/my_resume-compressed.pdf', 10, '2021-09-23', '2021-09-29', 'web', '2021-09-15', NULL, NULL, NULL, NULL, 0, 0, 0, 'not applicable', 'rejected by hod', NULL, 0, 0, 0),
-(25, '400', 'LIG 1st room no D42 sec3, kalamboli', 'music ', 'I', 'Fresher', 5000, '../files/400/12237540_Shivam_kendre_19368848_202109071119_Resume.pdf', 15, '2021-09-23', '2021-09-30', 'web', '2021-09-15', 5000, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/07', 1, 1, 1),
-(26, '400', 'kalamboli', 'accenture', 'O', 'rait', 5000, '../files/400/GenC Elevate process 08_09_2021.pdf', 5, '2021-09-16', '2021-09-15', 'web', '2021-09-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0);
+INSERT INTO `internships` (`internship_id`, `Sdrn`, `location`, `Topic`, `Consultancy_Type`, `Company_Name`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_submission`, `development_cost`, `taxes`, `maintenance`, `delivery_time`, `HOD_Approval`, `DC_Approval`, `Principal_Approval`, `Rejection_Reason`, `status`, `Outward_Number`, `quotation`, `consultancy_upload`, `ongoing`, `client_name`) VALUES
+(1, '400', 'Nerul', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2020-01-01', 'no required', '2001-01-01', 900, 0, 'zero charges for one year', '1 month', 1, 1, 1, '', 'completed', NULL, 1, 1, 1, NULL),
+(2, '400', 'Thane', 'MU RRC system', 'O', 'Microsoft Organization', 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', 5000, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/09', 1, 1, 1, NULL),
+(3, '400', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/08', 0, 0, 0, NULL),
+(4, '400', '', 'Fake news', 'O', 'Rait', 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', 500, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', NULL, 1, 1, 1, NULL),
+(5, '401', 'Thane', 'RAIT authentication system', 'I', 'Samsung', 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', 1200, 5, 'zero charges for three year', '5 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/10', 1, 1, 0, NULL),
+(6, '401', 'Amravati', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 0, 0, '', 'approved by hod', NULL, 0, 0, 0, NULL),
+(7, '401', 'Thane', 'Internship Approval', 'I', 'Samsung', 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/05', 0, 0, 0, NULL),
+(8, '401', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'vedit', 0, 0, 0, NULL),
+(9, '402', '', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(10, '402', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(11, '402', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(12, '402', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2001-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(13, '403', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'RAIT authentication system', 'I', NULL, 1000, '../files/18CE1009/sample.pdf', 7, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/IT/SDG-RAIT/2021-22/01', 0, 0, 0, NULL),
+(14, '403', '', 'MU RRC system', 'O', NULL, 5000, '../files/18CE1009/sample.pdf', 10, '2001-01-01', '2001-01-01', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(15, '403', '', 'Internship Approval', 'I', NULL, 2000, '../files/18CE1009/sample.pdf', 8, '2001-01-01', '2020-03-23', 'no required', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(16, '403', '', 'Fake news', 'O', NULL, 10000, '../files/18CE1009/sample.pdf', 11, '2001-01-01', '2020-01-01', 'phd', '2001-01-01', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(17, '401', 'Nerul', 'machine learning new project', 'I', 'RAIT', 122, '../files/401/Form.pdf', 11, '2020-12-31', '2021-03-11', 'html', '2021-03-21', 10000, 12, 'zero charges for one year', 'one month', 1, 1, 1, '', 'approved', '4', 1, 0, 0, NULL),
+(18, '401', 'H 201,SHREE GURUDATTA CHS, AIROLI SEC 8A', 'Android Developmemt', 'I', 'Apple', 122, '../files/401/Form.pdf', 2, '2021-03-09', '2021-03-31', 'html', '2021-03-22', NULL, NULL, NULL, NULL, 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/06', 0, 0, 0, NULL),
+(19, '401', 'abcf', 'Internship Ml', 'I', 'RAIT', 10000, '../files/401/Form.pdf', 2, '2021-03-16', '2021-03-31', 'html', '2021-03-22', 900, 18, 'zero charges for one year', '3 months', 1, 1, 1, '', 'approved', 'RAIT/computer/SDG-RAIT/2021-22/07', 1, 1, 0, NULL),
+(20, '400', 'nerul, Navi Mumbai', 'Stock Prediction using ML', 'I', 'RAIT', 10000, '../files/400/2021 Scholarship form.pdf', 4, '2021-04-06', '2021-05-06', 'sql,html', '2021-04-14', 10000, 56, '5456464654', '89888987987', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/08', 1, 1, 1, NULL),
+(21, '401', 'h201, Airoli,Navi Mumbai', 'E-locker document management', 'O', 'RAIT', 1000, '../files/401/Experiment 1(DWM).pdf', 2, '2021-04-08', '2021-04-29', 'html', '2021-04-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(22, '401', 'Seattle', 'Inventory Management System', 'I', 'Apple', 1000, '../files/401/Most popular spoken english words.pdf', 9, '2021-06-09', '2021-09-23', 'sql,html', '2021-08-16', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(23, '401', 'Korea', 'Github', 'I', 'Samsung', 19000, '../files/401/Most popular spoken english words.pdf', 3, '2021-07-08', '2021-08-27', 'sql,html', '2021-08-17', NULL, NULL, NULL, NULL, 0, 0, 0, '', 'pending', NULL, 0, 0, 0, NULL),
+(24, '400', 'LIG 1st room no D42 sec3, kalamboli', 'AIR BUS', 'O', 'Fresher', 5000, '../files/400/my_resume-compressed.pdf', 10, '2021-09-23', '2021-09-29', 'web', '2021-09-15', NULL, NULL, NULL, NULL, 0, 0, 0, 'not applicable', 'rejected by hod', NULL, 0, 0, 0, NULL),
+(25, '400', 'LIG 1st room no D42 sec3, kalamboli', 'music ', 'I', 'Fresher', 5000, '../files/400/12237540_Shivam_kendre_19368848_202109071119_Resume.pdf', 15, '2021-09-23', '2021-09-30', 'web', '2021-09-15', 5000, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/07', 1, 1, 1, NULL),
+(26, '400', 'kalamboli', 'accenture', 'O', 'rait', 5000, '../files/400/GenC Elevate process 08_09_2021.pdf', 5, '2021-09-16', '2021-09-15', 'web', '2021-09-17', 5000, 18, 'no charge', '1 year', 1, 1, 1, '', 'completed', 'RAIT/computer/SDG-RAIT/2021-22/07', 1, 1, 1, 'jefferson');
 
 -- --------------------------------------------------------
 

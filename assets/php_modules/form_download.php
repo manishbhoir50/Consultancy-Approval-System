@@ -74,8 +74,8 @@ $dateit = date_create($date);
         <?php echo htmlentities(date_format($dateit, "dS F, Y")) ?>
     </p> <br> <br>
     To,<br>
-    Mr. <br>
-    <?php echo htmlentities($form['Company_Name']) ?> <br>
+    <?php echo htmlentities($form['client_name']) ?> <br>
+    <?php echo htmlentities($form['Company_Name']) ?>, <br>
     <?php echo htmlentities($form['location']) ?> <br>
     <br><br>
     <b>Subject:</b> Acceptance of Proposed execution of "

@@ -4,6 +4,7 @@
     box-sizing: border-box !important;
 }
 
+
 /* color theme varaible are initialsed */
 :root {
     /* --primary: rgb(131, 5, 5);
@@ -39,6 +40,11 @@ body {
 
 .navbar-light {
     color: white !important;
+}
+
+.date-validater{
+    color : red;
+    display : none;
 }
 
 

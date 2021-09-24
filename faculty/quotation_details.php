@@ -10,11 +10,12 @@ $faculty = get_faculty_details($sdrn);
 
 if (isset($_POST['submit'])) {
     $amount = $_POST['amount'];
-    $taxes=$_POST['taxes'];
-    $charges=$_POST['charges'];
-    $time=$_POST['time'];
+    $taxes = $_POST['taxes'];
+    $charges = $_POST['charges'];
+    $time = $_POST['time'];
+    $client_name = $_POST["client-name"];
 
-    quotation_details($internship_id,$faculty['Sdrn'],$amount,$taxes,$charges,$time);
+    quotation_details($internship_id, $faculty['Sdrn'], $amount, $taxes, $charges, $time, $client_name);
 }
 
 ?>
@@ -70,7 +71,23 @@ if (isset($_POST['submit'])) {
         <h3 class="text-center mb-3 add-font validation-msg alert alert-danger add-font" id="error-msg">Please fill all the required fields*</h3>
 
 
-        <form onsubmit="return validate_me()" method="post" >
+        <form onsubmit="return validate_me()" method="post">
+
+            <div class="col-12 mb-3">
+                <label for="inputCharges" class="form-label label-required">Client Name</label>
+                <input type="text" class="form-control input-required" id="inputCharges" placeholder="Enter client Name" name="client-name" onchange="remove_error(this)">
+            </div>
+
+            <div class="col-12 mb-3">
+                <label for="inputCharges" class="form-label label-required">Maintenance Charges</label>
+                <input type="text" class="form-control input-required" id="inputCharges" placeholder="Enter Maintenance Charges" name="charges" onchange="remove_error(this)">
+            </div>
+
+            <div class="col-12 mb-3">
+                <label for="inputTime" class="form-label label-required">Time of Delivery</label>
+                <input type="text" class="form-control input-required" id="inputTime" placeholder="Enter the Time of Delivery" name="time" onchange="remove_error(this)">
+            </div>
+
             <label for="amount" class="form-label label-required">Development Cost</label>
             <div class="row">
                 <div class=" mb-3 col-6">
@@ -83,15 +100,6 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <div class="col-12 mb-3">
-                <label for="inputCharges" class="form-label label-required">Maintenance Charges</label>
-                <input type="text" class="form-control input-required" id="inputCharges" placeholder="Enter Maintenance Charges" name="charges" onchange="remove_error(this)">
-            </div>
-
-            <div class="col-12 mb-3">
-                <label for="inputTime" class="form-label label-required">Time of Delivery</label>
-                <input type="text" class="form-control input-required" id="inputTime" placeholder="Enter the Time of Delivery" name="time" onchange="remove_error(this)">
-            </div>
 
             <div class=" d-flex justify-content-center mt-4 btn-container">
                 <button type="submit" name="submit" class="btn text-decoration-none">Submit</button>

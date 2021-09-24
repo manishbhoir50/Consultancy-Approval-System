@@ -115,12 +115,10 @@ function upload_file($sdrn)
 }
 
 //function to upload internship details in Internships directory
-function upload_details($sdrn, $location, $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date)
+function upload_details($email, $sdrn, $location, $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date)
 {
     global $conn;
 
-
-    $email = $_SESSION['email_id'];
     $query = "INSERT INTO `internships` (`Sdrn`, `location`, `Topic`, `Consultancy_Type`,`Company_Name`, `Tentative_Amount`, `Abstract`, `Members_Count`, `From_Date`, `To_Date`, `Skills`, `Date_Submission`, `status`) VALUES ('$sdrn', '$location', '$topic','$consultancy','$company_name','$amount','$path','$count','$startdate','$enddate','$skill','$submission_date','pending') ";
 
     $result = mysqli_query($conn, $query);
@@ -128,6 +126,7 @@ function upload_details($sdrn, $location, $topic, $consultancy, $company_name, $
 
     // sends mail to faculty
     sendMail($email, $topic . ' is sent for approval', $body);
+    echo "\nhere is".$email."\n";
     // sending mail to hod of faculty
     $dept = $_SESSION['dept'];
     $query = "SELECT `Email` FROM `faculty` WHERE `Sdrn` = (SELECT `Sdrn` FROM `hod` WHERE `dept` = '$dept')";
@@ -140,6 +139,7 @@ function upload_details($sdrn, $location, $topic, $consultancy, $company_name, $
     $email = $res['Email'];
     $body = $sdrn . ' have applied for' . $topic . '<br>for more details <a href = "localhost/internship-approval-master/hod">click here</a>';
     sendMail($email, $topic . ' is sent for approval', $body);
+    echo $email;
 
     $queryi = "SELECT MAX(`internship_id`) AS MAXIMUM FROM `internships`";
     $data = mysqli_query($conn, $queryi);
@@ -164,7 +164,7 @@ function Set_Details($role, $response, $internship_id, $email, $topic)
             else
                 mysqli_error($conn);
 
-            $query = "SELECT `Email_id` FROM `admin_details` WHERE `role` = 'dean'";
+            $query = "SELECT `Email_id` FROM `admin_details` WHERE `role` = 'Dean'";
             $result = mysqli_query($conn, $query);
             echo mysqli_error($conn);
             $email = mysqli_fetch_assoc($result)['Email_id'];
@@ -288,11 +288,11 @@ function outward_details($internship_id, $sdrn, $email, $topic)
 }
 
 //function to upload quotation details in Internships directory
-function quotation_details($id, $sdrn, $amount, $taxes, $charges, $time)
+function quotation_details($id, $sdrn, $amount, $taxes, $charges, $time, $client_name)
 {
     global $conn;
 
-    $query = "UPDATE `internships` SET `development_cost`='$amount',`taxes`='$taxes',`maintenance`='$charges',`delivery_time`='$time',`quotation`=1 WHERE `internship_id`=$id AND `Sdrn`=$sdrn";
+    $query = "UPDATE `internships` SET `development_cost`='$amount',`taxes`='$taxes',`maintenance`='$charges',`delivery_time`='$time',`quotation`=1, `client_name` = '$client_name' WHERE `internship_id`=$id AND `Sdrn`=$sdrn";
     $result = mysqli_query($conn, $query);
     if ($result)
         echo "success";
@@ -300,7 +300,7 @@ function quotation_details($id, $sdrn, $amount, $taxes, $charges, $time)
         mysqli_error($conn);
 ?>
     <script>
-        window.location.href = "next.php?internship_id=<?php echo $id ?>"
+        window.location.href = "view_form.php?internship_id=<?php echo $id ?>&status=approved"
     </script>
 
 <?php

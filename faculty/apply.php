@@ -57,7 +57,7 @@
       $submission_date = $date;
 
 
-      upload_details($sdrn,$addr,  $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
+      upload_details($_SESSION["email_id"], $sdrn,$addr,  $topic, $consultancy, $company_name, $amount, $path, $count, $startdate, $enddate, $skill, $submission_date);
       
     }
     
@@ -154,6 +154,10 @@
       <div class="mb-3 row ">
         <div class="col mb-1"> From Date <input type="date" name="startdate" id="startdate" class = "input-required" onchange="remove_error(this)"> </div>
         <div class="col mb-1"> To Date <input type="date" name="enddate" id="enddate" class = "input-required" onchange="remove_error(this)"> </div>
+      </div>
+
+      <div class = "date-validater" id = "date-error">
+        <p>please enter valid start date and end date</p>
       </div>
 
       <div class="mb-3">

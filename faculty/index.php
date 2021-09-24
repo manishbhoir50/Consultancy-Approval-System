@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
       $data = mysqli_fetch_assoc($result);
       $sdrn = $data["Sdrn"];
       $_SESSION["first_name"] = $data["First_name"];
-      $_SESSION['email_id'] = $data["Email_id"];
+      $_SESSION['email_id'] = $data["Email"];
       $_SESSION['sdrn'] = $sdrn;
       $_SESSION['start_date'] = "2001-01-01";
       $_SESSION['end_date'] = display_date();

@@ -69,8 +69,24 @@ let Accept_response = ()=>{
 
 // method to remove red border on input field on changing it also to remove error alert
 let remove_error = (element)=>{
+
     
     let error_msg = document.getElementById('error-msg')
     error_msg.style.display = "none";
     element.style.outline = "none"
+    let msg = document.getElementById("date-error")
+
+    let from_date = document.getElementById("startdate")
+    let end_date = document.getElementById("enddate")
+    let date1 = new Date(from_date.value)
+    let date2 = new Date(end_date.value)
+    if(startdate.value != "" && date1 >= date2){
+        msg.style.display = "block"
+        from_date.style.outline = "4px solid rgba(247, 9, 9, 0.5)"
+        end_date.style.outline = "4px solid rgba(247, 9, 9, 0.5)"
+    }else if(date2 > date1){
+        from_date.style.outline = "none"
+        end_date.style.outline = "none"
+        msg.style.display = "none"
+    }
 }

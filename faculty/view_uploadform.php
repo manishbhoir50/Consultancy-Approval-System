@@ -7,10 +7,6 @@ $internship_id = $_GET['internship_id'];
 $document = get_document_details($internship_id);
 $form = get_form_details($internship_id);
 
-if (isset($_POST['quotation'])) {
-    header('Location:../assets/php_modules/form_download.php?id=' . $internship_id);
-}
-
 ?>
 
 <!doctype html>
@@ -58,12 +54,6 @@ if (isset($_POST['quotation'])) {
 
         <!-- external javascript link -->
         <script src="../assets/js/main.js"></script>
-
-        <form method="post">
-            <div class="mb-3  d-flex justify-content-start mt-4 btn-container">
-                <button type="submit" name="quotation" class="btn text-decoration-none">Download Quotation Letter</button>
-            </div>
-        </form>
 
         <form method="post" enctype="multipart/form-data">
 
